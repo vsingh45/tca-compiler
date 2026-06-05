@@ -1,0 +1,23 @@
+{
+  "description": "Baseline measurements from smoke tests - real Anthropic API",
+  "date": "2026-05",
+  "model": "claude-haiku-4-5-20251001",
+  "depth_1": {
+    "mem_pct_TCA": 5.7,
+    "total_cost_usd": 0.000546,
+    "latency_ms": 1573,
+    "context": "single node, minimal prior context"
+  },
+  "depth_4": {
+    "mem_pct_TCA": 26.6,
+    "injection_tokens": 282,
+    "base_tokens": 35,
+    "total_input_tokens": 317,
+    "injection_pct_of_input": 89.0,
+    "total_cost_usd": 0.001059,
+    "latency_ms": 1955,
+    "context": "3 prior node outputs accumulated"
+  },
+  "hypothesis": "SUPPORTED - memory injection is significant at depth 4",
+  "note": "These are cold-start numbers with minimal context. Full benchmark with 200 tasks will show higher injection at depth 5-6."
+}
