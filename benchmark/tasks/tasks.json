@@ -1,0 +1,4058 @@
+[
+  {
+    "task_id": "T001",
+    "category": "Billing",
+    "depth": 2,
+    "query": "Show all invoices from Adobe in Q3 2024.",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "adobe",
+      "invoice",
+      "q3"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T002",
+    "category": "Billing",
+    "depth": 2,
+    "query": "List all disputed invoices from the past 6 months.",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "disputed",
+      "invoice",
+      "status"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T003",
+    "category": "Billing",
+    "depth": 2,
+    "query": "What is the total spend on Microsoft products in 2024?",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "microsoft",
+      "total",
+      "spend"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T004",
+    "category": "Billing",
+    "depth": 2,
+    "query": "Show invoices over $20,000 that are still pending.",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "threshold",
+      "pending",
+      "invoice"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T005",
+    "category": "Billing",
+    "depth": 2,
+    "query": "List all Salesforce invoices paid in Q4 2024.",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "salesforce",
+      "paid",
+      "q4"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T006",
+    "category": "Billing",
+    "depth": 2,
+    "query": "What vendors have more than 5 invoices this year?",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "vendor",
+      "count",
+      "invoice"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T007",
+    "category": "Billing",
+    "depth": 2,
+    "query": "Show the top 3 vendors by total invoice amount in 2024.",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "vendor",
+      "top",
+      "amount"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T008",
+    "category": "Billing",
+    "depth": 2,
+    "query": "List all invoices without a matching purchase order.",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "invoice",
+      "po",
+      "mismatch"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T009",
+    "category": "Billing",
+    "depth": 3,
+    "query": "Find invoice discrepancies over $1,000 in Q3 and identify the vendors.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "discrepancy",
+      "threshold",
+      "vendor",
+      "q3"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T010",
+    "category": "Billing",
+    "depth": 3,
+    "query": "Which vendors have disputed payments and what are the amounts?",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "disputed",
+      "vendor",
+      "amount",
+      "payment"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T011",
+    "category": "Billing",
+    "depth": 3,
+    "query": "Show all invoices where the PO amount differs from the invoice amount.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "po",
+      "invoice",
+      "difference",
+      "mismatch"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T012",
+    "category": "Billing",
+    "depth": 3,
+    "query": "What is the total unreconciled spend across all vendors this year?",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "unreconciled",
+      "total",
+      "vendor",
+      "spend"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T013",
+    "category": "Billing",
+    "depth": 3,
+    "query": "Identify vendors with both pending invoices and disputed payments.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "pending",
+      "disputed",
+      "vendor"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T014",
+    "category": "Billing",
+    "depth": 3,
+    "query": "Show Oracle invoices and their corresponding PO status.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "oracle",
+      "invoice",
+      "po",
+      "status"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T015",
+    "category": "Billing",
+    "depth": 3,
+    "query": "Find all invoices paid more than 60 days after receipt.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "invoice",
+      "payment",
+      "delay",
+      "days"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T016",
+    "category": "Billing",
+    "depth": 3,
+    "query": "Which departments have the highest unmatched invoice spend?",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "department",
+      "unmatched",
+      "spend"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T017",
+    "category": "Billing",
+    "depth": 4,
+    "query": "Show invoice discrepancies over $10,000 for Q3 and flag which need board approval.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "discrepancy",
+      "threshold",
+      "q3",
+      "board",
+      "approval"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T018",
+    "category": "Billing",
+    "depth": 4,
+    "query": "Identify disputed invoices from top vendors and check compliance with payment policy.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "disputed",
+      "vendor",
+      "compliance",
+      "policy"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T019",
+    "category": "Billing",
+    "depth": 4,
+    "query": "Find all PO-invoice mismatches over $5,000 and determine if exceptions were approved.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "mismatch",
+      "threshold",
+      "exception",
+      "approved"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T020",
+    "category": "Billing",
+    "depth": 4,
+    "query": "Show vendors with recurring discrepancies and assess policy violation risk.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "recurring",
+      "discrepancy",
+      "vendor",
+      "violation"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T021",
+    "category": "Billing",
+    "depth": 4,
+    "query": "Identify invoices paid outside net-30 terms and check late payment policy.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "late",
+      "payment",
+      "terms",
+      "policy"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T022",
+    "category": "Billing",
+    "depth": 4,
+    "query": "Find invoices without POs over $15,000 and check single-approval threshold.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "no-po",
+      "threshold",
+      "approval",
+      "policy"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T023",
+    "category": "Billing",
+    "depth": 4,
+    "query": "Show Q4 disputed payments and check if dispute resolution SLA was met.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "disputed",
+      "q4",
+      "sla",
+      "resolution"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T024",
+    "category": "Billing",
+    "depth": 4,
+    "query": "Identify vendors with invoices above contract value and flag for review.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "vendor",
+      "contract",
+      "exceeded",
+      "flag"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T025",
+    "category": "Billing",
+    "depth": 5,
+    "query": "Reconcile Q3 billing actuals against SAM contracts and flag spend governance violations.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "billing",
+      "sam",
+      "reconcile",
+      "q3",
+      "governance"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T026",
+    "category": "Billing",
+    "depth": 5,
+    "query": "Find vendors with invoice discrepancies, check SAM entitlements, and assess compliance.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "discrepancy",
+      "entitlement",
+      "vendor",
+      "compliance"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T027",
+    "category": "Billing",
+    "depth": 5,
+    "query": "Identify over-billed vendors, cross-check against contracts, and flag policy exceptions.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "overbilled",
+      "contract",
+      "exception",
+      "policy"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T028",
+    "category": "Billing",
+    "depth": 5,
+    "query": "Show disputed invoices, verify against POs, check policy, and recommend resolution.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "disputed",
+      "po",
+      "policy",
+      "resolution"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T029",
+    "category": "Billing",
+    "depth": 5,
+    "query": "Audit Q4 payments, reconcile with invoices, and identify board-approval threshold breaches.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "payment",
+      "invoice",
+      "reconcile",
+      "board",
+      "q4"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T030",
+    "category": "Billing",
+    "depth": 5,
+    "query": "Find all unmatched invoices, identify root causes, and check exception approval status.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "unmatched",
+      "root-cause",
+      "exception",
+      "approval"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T031",
+    "category": "Billing",
+    "depth": 5,
+    "query": "Reconcile vendor spend across billing and SAM systems and identify cost optimization opportunities.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "vendor",
+      "spend",
+      "sam",
+      "billing",
+      "optimization"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T032",
+    "category": "Billing",
+    "depth": 5,
+    "query": "Show invoices with missing approvals, cross-check against procurement policy, and flag escalations.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "approval",
+      "missing",
+      "procurement",
+      "policy",
+      "escalation"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T033",
+    "category": "Billing",
+    "depth": 6,
+    "query": "Full Q3 billing audit: reconcile invoices, verify POs, check SAM contracts, assess policy, recommend actions.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "audit",
+      "q3",
+      "reconcile",
+      "sam",
+      "policy",
+      "action"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T034",
+    "category": "Billing",
+    "depth": 6,
+    "query": "Identify all billing anomalies, trace to source systems, verify approvals, and generate compliance report.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "anomaly",
+      "source",
+      "approval",
+      "compliance",
+      "report"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T035",
+    "category": "Billing",
+    "depth": 6,
+    "query": "Reconcile top-10 vendor spend, check contracts, verify access permissions, and flag risk.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "vendor",
+      "contract",
+      "permission",
+      "risk",
+      "top10"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T036",
+    "category": "Billing",
+    "depth": 6,
+    "query": "Audit disputed payments, verify IAM access for approvers, check policy, and recommend resolution.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "disputed",
+      "approver",
+      "iam",
+      "policy",
+      "resolution"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T037",
+    "category": "Billing",
+    "depth": 6,
+    "query": "Show all invoices over $25,000, verify approver access rights, check spend policy, flag exceptions.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "invoice",
+      "approver",
+      "access",
+      "spend",
+      "exception"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T038",
+    "category": "Billing",
+    "depth": 6,
+    "query": "Reconcile annual vendor contracts with actual invoices, verify IAM permissions, assess compliance.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "annual",
+      "contract",
+      "invoice",
+      "iam",
+      "compliance"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T039",
+    "category": "Billing",
+    "depth": 6,
+    "query": "Find vendors with both billing discrepancies and IAM access violations, prioritize by risk.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "discrepancy",
+      "iam",
+      "violation",
+      "risk",
+      "priority"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T040",
+    "category": "Billing",
+    "depth": 6,
+    "query": "Full vendor risk assessment: billing anomalies, contract compliance, access rights, policy adherence.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "risk",
+      "anomaly",
+      "contract",
+      "access",
+      "policy"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T041",
+    "category": "SAM",
+    "depth": 2,
+    "query": "Show all Adobe software licenses and their expiry dates.",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "adobe",
+      "license",
+      "expiry"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T042",
+    "category": "SAM",
+    "depth": 2,
+    "query": "List all contracts expiring in Q1 2025.",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "contract",
+      "expiry",
+      "q1"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T043",
+    "category": "SAM",
+    "depth": 2,
+    "query": "Which software products have more than 100 licensed seats?",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "seats",
+      "licensed",
+      "count"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T044",
+    "category": "SAM",
+    "depth": 2,
+    "query": "Show all Salesforce contracts and their annual costs.",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "salesforce",
+      "contract",
+      "cost"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T045",
+    "category": "SAM",
+    "depth": 2,
+    "query": "List software with zero usage in the last 90 days.",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "unused",
+      "90days",
+      "software"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T046",
+    "category": "SAM",
+    "depth": 2,
+    "query": "Show all contracts with auto-renewal flags.",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "auto-renewal",
+      "contract",
+      "flag"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T047",
+    "category": "SAM",
+    "depth": 2,
+    "query": "Which departments have the most software entitlements?",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "department",
+      "entitlement",
+      "count"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T048",
+    "category": "SAM",
+    "depth": 2,
+    "query": "Show all Microsoft products and their total seat counts.",
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "microsoft",
+      "seats",
+      "product"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T049",
+    "category": "SAM",
+    "depth": 3,
+    "query": "Find underutilized licenses where usage is below 50% of allocated seats.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "underutilized",
+      "usage",
+      "seats",
+      "threshold"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T050",
+    "category": "SAM",
+    "depth": 3,
+    "query": "Show contracts expiring in 90 days and their renewal status.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "expiry",
+      "90days",
+      "renewal",
+      "status"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T051",
+    "category": "SAM",
+    "depth": 3,
+    "query": "Identify over-provisioned licenses where allocated seats exceed active users.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "over-provisioned",
+      "seats",
+      "users",
+      "gap"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T052",
+    "category": "SAM",
+    "depth": 3,
+    "query": "Compare contracted seats vs actual usage for top 5 vendors.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "contracted",
+      "actual",
+      "vendor",
+      "comparison"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T053",
+    "category": "SAM",
+    "depth": 3,
+    "query": "Find all licenses where cost per active user exceeds $500 annually.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "cost-per-user",
+      "threshold",
+      "annual"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T054",
+    "category": "SAM",
+    "depth": 3,
+    "query": "Show Oracle licenses with their utilization rates and renewal dates.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "oracle",
+      "utilization",
+      "renewal"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T055",
+    "category": "SAM",
+    "depth": 3,
+    "query": "Identify contracts where actual user count exceeds licensed seats.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "exceeded",
+      "seats",
+      "users",
+      "contract"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T056",
+    "category": "SAM",
+    "depth": 3,
+    "query": "Show total annual software spend per department with utilization breakdown.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "spend",
+      "department",
+      "utilization",
+      "annual"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T057",
+    "category": "SAM",
+    "depth": 4,
+    "query": "Identify Adobe licenses expiring in Q4 with low utilization and recommend renewal posture.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "adobe",
+      "expiry",
+      "utilization",
+      "renewal",
+      "posture"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T058",
+    "category": "SAM",
+    "depth": 4,
+    "query": "Find over-provisioned licenses above $10K annual cost and check reduction policy.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "over-provisioned",
+      "cost",
+      "policy",
+      "reduction"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T059",
+    "category": "SAM",
+    "depth": 4,
+    "query": "Show underutilized Microsoft licenses and assess if downsizing complies with vendor policy.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "microsoft",
+      "underutilized",
+      "downsize",
+      "policy"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T060",
+    "category": "SAM",
+    "depth": 4,
+    "query": "Find contracts with auto-renewal where usage dropped below 30% \u2014 flag for review.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "auto-renewal",
+      "usage",
+      "threshold",
+      "flag"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T061",
+    "category": "SAM",
+    "depth": 4,
+    "query": "Show Salesforce licenses, compare usage vs seats, check contract terms.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "salesforce",
+      "usage",
+      "seats",
+      "contract",
+      "terms"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T062",
+    "category": "SAM",
+    "depth": 4,
+    "query": "Identify top 5 most expensive underutilized licenses and check if cancellation is allowed.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "expensive",
+      "underutilized",
+      "cancellation",
+      "top5"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T063",
+    "category": "SAM",
+    "depth": 4,
+    "query": "Find all licenses expiring without renewal flags and assess procurement policy requirements.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "expiry",
+      "renewal",
+      "procurement",
+      "policy"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T064",
+    "category": "SAM",
+    "depth": 4,
+    "query": "Show Engineering department software spend, utilization, and flag overspend vs budget policy.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "engineering",
+      "spend",
+      "utilization",
+      "budget",
+      "policy"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T065",
+    "category": "SAM",
+    "depth": 5,
+    "query": "Full Adobe license review: usage, cost, expiry, renewal posture, and procurement recommendation.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "adobe",
+      "usage",
+      "cost",
+      "renewal",
+      "recommendation"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T066",
+    "category": "SAM",
+    "depth": 5,
+    "query": "Reconcile SAM records with billing invoices for top 5 vendors \u2014 identify gaps.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "sam",
+      "billing",
+      "reconcile",
+      "vendor",
+      "gap"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T067",
+    "category": "SAM",
+    "depth": 5,
+    "query": "Find all licenses with usage below 40%, cross-check billing, and recommend optimization.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "usage",
+      "threshold",
+      "billing",
+      "optimization"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T068",
+    "category": "SAM",
+    "depth": 5,
+    "query": "Show contracts expiring in 60 days, check billing status, verify renewal authority.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "expiry",
+      "60days",
+      "billing",
+      "renewal",
+      "authority"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T069",
+    "category": "SAM",
+    "depth": 5,
+    "query": "Identify over-licensed vendors, reconcile with billing, check spend governance.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "over-licensed",
+      "billing",
+      "governance",
+      "vendor"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T070",
+    "category": "SAM",
+    "depth": 5,
+    "query": "Show SAP licenses, actual usage, billing amounts, contract terms, and cost per user.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "sap",
+      "usage",
+      "billing",
+      "contract",
+      "cost-per-user"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T071",
+    "category": "SAM",
+    "depth": 5,
+    "query": "Find departments exceeding software budget, cross-check invoices, flag for CFO review.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "department",
+      "budget",
+      "invoice",
+      "cfo",
+      "flag"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T072",
+    "category": "SAM",
+    "depth": 5,
+    "query": "Reconcile annual license spend across SAM and billing, identify savings opportunities.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "annual",
+      "sam",
+      "billing",
+      "savings",
+      "reconcile"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T073",
+    "category": "SAM",
+    "depth": 6,
+    "query": "Full SAM audit: license usage, billing reconciliation, IAM access, policy compliance, recommendations.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "audit",
+      "usage",
+      "billing",
+      "iam",
+      "policy",
+      "recommendation"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T074",
+    "category": "SAM",
+    "depth": 6,
+    "query": "Find all unused licenses, verify billing, check user access, assess policy, recommend action.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "unused",
+      "billing",
+      "access",
+      "policy",
+      "action"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T075",
+    "category": "SAM",
+    "depth": 6,
+    "query": "Show license spend by department, reconcile with billing, verify approver access, check policy.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "department",
+      "billing",
+      "approver",
+      "access",
+      "policy"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T076",
+    "category": "SAM",
+    "depth": 6,
+    "query": "Identify ghost licenses (assigned to inactive users), reconcile billing, flag for reclamation.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "ghost",
+      "inactive",
+      "billing",
+      "reclamation"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T077",
+    "category": "SAM",
+    "depth": 6,
+    "query": "Full Microsoft license review: usage, billing, user access rights, renewal policy, optimization.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "microsoft",
+      "billing",
+      "access",
+      "renewal",
+      "optimization"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T078",
+    "category": "SAM",
+    "depth": 6,
+    "query": "Reconcile Salesforce contracts, verify billing, check admin access, assess governance.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "salesforce",
+      "contract",
+      "billing",
+      "admin",
+      "governance"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T079",
+    "category": "SAM",
+    "depth": 6,
+    "query": "Find over-provisioned expensive licenses, trace billing, verify access patterns, recommend cuts.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "over-provisioned",
+      "billing",
+      "access",
+      "cuts"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T080",
+    "category": "SAM",
+    "depth": 6,
+    "query": "Annual SAM health check: license efficiency, billing accuracy, access hygiene, policy adherence.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check",
+      "cross-recon",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "efficiency",
+      "accuracy",
+      "hygiene",
+      "policy",
+      "annual"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T081",
+    "category": "IAM",
+    "depth": 2,
+    "query": "List all users with admin-level access permissions.",
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "admin",
+      "access",
+      "users"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T082",
+    "category": "IAM",
+    "depth": 2,
+    "query": "Show all inactive users who still have active permissions.",
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "inactive",
+      "permission",
+      "active"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T083",
+    "category": "IAM",
+    "depth": 2,
+    "query": "Find all contractor accounts and their access expiry dates.",
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "contractor",
+      "access",
+      "expiry"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T084",
+    "category": "IAM",
+    "depth": 2,
+    "query": "Show users with write access to production database.",
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "write",
+      "production",
+      "database"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T085",
+    "category": "IAM",
+    "depth": 2,
+    "query": "List users who have not logged in for the past 60 days.",
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "inactive",
+      "login",
+      "60days"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T086",
+    "category": "IAM",
+    "depth": 2,
+    "query": "Show all admin accounts in the Engineering department.",
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "admin",
+      "engineering",
+      "department"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T087",
+    "category": "IAM",
+    "depth": 2,
+    "query": "Find users with access to both finance-reports and payroll-system.",
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "finance",
+      "payroll",
+      "access",
+      "multiple"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T088",
+    "category": "IAM",
+    "depth": 2,
+    "query": "Show all permissions granted in the last 30 days.",
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "required_topics": [
+      "permission",
+      "granted",
+      "recent"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T089",
+    "category": "IAM",
+    "depth": 3,
+    "query": "Find users with admin access who have not used it in 90 days \u2014 flag for review.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "admin",
+      "unused",
+      "90days",
+      "flag"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T090",
+    "category": "IAM",
+    "depth": 3,
+    "query": "Identify over-privileged users whose access level exceeds their role requirements.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "over-privileged",
+      "role",
+      "access",
+      "requirement"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T091",
+    "category": "IAM",
+    "depth": 3,
+    "query": "Show contractors with access beyond their contract expiry date.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "contractor",
+      "expired",
+      "access",
+      "contract"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T092",
+    "category": "IAM",
+    "depth": 3,
+    "query": "Find users with write access to production who are not in Engineering or IT.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "write",
+      "production",
+      "department",
+      "violation"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T093",
+    "category": "IAM",
+    "depth": 3,
+    "query": "Identify accounts with failed login attempts above threshold in the last week.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "failed",
+      "login",
+      "threshold",
+      "week"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T094",
+    "category": "IAM",
+    "depth": 3,
+    "query": "Show users with access to payroll-system and verify role justification.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "payroll",
+      "access",
+      "role",
+      "justification"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T095",
+    "category": "IAM",
+    "depth": 3,
+    "query": "Find all shared accounts and assess compliance with account policy.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "shared",
+      "account",
+      "compliance",
+      "policy"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T096",
+    "category": "IAM",
+    "depth": 3,
+    "query": "Show admin permissions granted without manager approval in the last 90 days.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "admin",
+      "approval",
+      "manager",
+      "recent"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T097",
+    "category": "IAM",
+    "depth": 4,
+    "query": "Full access review for finance-reports: who has access, usage, role justification, policy check.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "finance",
+      "access",
+      "usage",
+      "policy",
+      "justification"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T098",
+    "category": "IAM",
+    "depth": 4,
+    "query": "Find inactive users with admin access, verify with manager, check separation of duties policy.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "inactive",
+      "admin",
+      "manager",
+      "separation",
+      "duties"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T099",
+    "category": "IAM",
+    "depth": 4,
+    "query": "Identify users with cloud-console admin access and verify compliance with least-privilege policy.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "cloud",
+      "admin",
+      "least-privilege",
+      "compliance"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T100",
+    "category": "IAM",
+    "depth": 4,
+    "query": "Show contractor access to sensitive resources, check expiry, assess policy violations.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "contractor",
+      "sensitive",
+      "expiry",
+      "violation"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T101",
+    "category": "IAM",
+    "depth": 4,
+    "query": "Find users with billing-system access, verify authorization, check segregation of duties.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "billing",
+      "authorization",
+      "segregation",
+      "duties"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T102",
+    "category": "IAM",
+    "depth": 4,
+    "query": "Identify accounts with both read and write access to production and staging simultaneously.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "production",
+      "staging",
+      "read",
+      "write",
+      "simultaneous"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T103",
+    "category": "IAM",
+    "depth": 4,
+    "query": "Show HR department access to non-HR systems and check policy compliance.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "hr",
+      "non-hr",
+      "access",
+      "compliance"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T104",
+    "category": "IAM",
+    "depth": 4,
+    "query": "Find users with export permissions on sensitive data and verify data governance policy.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "export",
+      "sensitive",
+      "governance",
+      "policy"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T105",
+    "category": "IAM",
+    "depth": 5,
+    "query": "Full privileged access review: admin users, usage patterns, policy compliance, risk assessment.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "privileged",
+      "admin",
+      "usage",
+      "policy",
+      "risk"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T106",
+    "category": "IAM",
+    "depth": 5,
+    "query": "Reconcile IAM permissions with SAM licenses \u2014 find users with software access but no license.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "iam",
+      "sam",
+      "license",
+      "reconcile",
+      "mismatch"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T107",
+    "category": "IAM",
+    "depth": 5,
+    "query": "Find over-privileged contractors, verify SAM entitlements, check billing, assess risk.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "contractor",
+      "privileged",
+      "sam",
+      "billing",
+      "risk"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T108",
+    "category": "IAM",
+    "depth": 5,
+    "query": "Identify users with access to production systems, verify training records, check policy.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "production",
+      "access",
+      "training",
+      "policy"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T109",
+    "category": "IAM",
+    "depth": 5,
+    "query": "Show all admin accounts, cross-check against org chart, verify approval chain.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "admin",
+      "org-chart",
+      "approval",
+      "chain"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T110",
+    "category": "IAM",
+    "depth": 5,
+    "query": "Find users who accessed billing-system after hours, verify authorization, check policy.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "billing",
+      "after-hours",
+      "authorization",
+      "policy"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T111",
+    "category": "IAM",
+    "depth": 5,
+    "query": "Identify dormant admin accounts, reconcile with HR records, assess security risk.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "dormant",
+      "admin",
+      "hr",
+      "security",
+      "risk"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T112",
+    "category": "IAM",
+    "depth": 5,
+    "query": "Full contractor access audit: permissions, usage, SAM licenses, billing, policy compliance.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen"
+    ],
+    "required_topics": [
+      "contractor",
+      "permission",
+      "sam",
+      "billing",
+      "compliance"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T113",
+    "category": "IAM",
+    "depth": 6,
+    "query": "Complete IAM risk assessment: access patterns, policy violations, SAM reconciliation, billing check.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "risk",
+      "access",
+      "policy",
+      "sam",
+      "billing"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T114",
+    "category": "IAM",
+    "depth": 6,
+    "query": "Full zero-trust audit: verify every admin access, check SAM, billing, policy, generate risk report.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "zero-trust",
+      "admin",
+      "sam",
+      "billing",
+      "policy",
+      "risk"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T115",
+    "category": "IAM",
+    "depth": 6,
+    "query": "Find all policy violations, trace to root cause, verify authorizations, assess financial impact.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "violation",
+      "root-cause",
+      "authorization",
+      "financial",
+      "impact"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T116",
+    "category": "IAM",
+    "depth": 6,
+    "query": "Reconcile user access across IAM, SAM, and billing \u2014 identify orphaned permissions.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "iam",
+      "sam",
+      "billing",
+      "reconcile",
+      "orphaned"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T117",
+    "category": "IAM",
+    "depth": 6,
+    "query": "Full contractor lifecycle audit: access, licenses, billing, policy compliance, recommendations.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "contractor",
+      "lifecycle",
+      "billing",
+      "policy",
+      "recommendation"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T118",
+    "category": "IAM",
+    "depth": 6,
+    "query": "Identify accounts with anomalous access patterns, verify authorization, check financial impact.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "anomalous",
+      "authorization",
+      "financial",
+      "pattern"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T119",
+    "category": "IAM",
+    "depth": 6,
+    "query": "Full access governance review: permissions, SAM, billing, policy, risk scoring, action plan.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "governance",
+      "permission",
+      "sam",
+      "billing",
+      "risk",
+      "action"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T120",
+    "category": "IAM",
+    "depth": 6,
+    "query": "Annual IAM health check: access hygiene, SAM alignment, billing accuracy, policy adherence.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "required_topics": [
+      "annual",
+      "hygiene",
+      "sam",
+      "billing",
+      "policy"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T121",
+    "category": "CrossDomain",
+    "depth": 4,
+    "query": "Reconcile SAM contracts with billing actuals for Q3 and flag discrepancies.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "sam",
+      "billing",
+      "q3",
+      "discrepancy",
+      "reconcile"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T122",
+    "category": "CrossDomain",
+    "depth": 4,
+    "query": "Find software licenses paid for but not in SAM records.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "paid",
+      "sam",
+      "missing",
+      "license"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T123",
+    "category": "CrossDomain",
+    "depth": 4,
+    "query": "Show users with IAM access to systems where company has no SAM license.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "iam",
+      "sam",
+      "license",
+      "access",
+      "mismatch"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T124",
+    "category": "CrossDomain",
+    "depth": 4,
+    "query": "Identify vendors billed but with no active contracts in SAM.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "vendor",
+      "billed",
+      "contract",
+      "sam",
+      "missing"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T125",
+    "category": "CrossDomain",
+    "depth": 4,
+    "query": "Find contractors paying for licenses but whose SAM access has expired.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "billing-recon",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "contractor",
+      "license",
+      "expired",
+      "sam"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T126",
+    "category": "CrossDomain",
+    "depth": 4,
+    "query": "Show cost-per-active-user for top 10 software products across SAM and billing.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "cost-per-user",
+      "active",
+      "sam",
+      "billing",
+      "top10"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T127",
+    "category": "CrossDomain",
+    "depth": 4,
+    "query": "Identify users with admin IAM access whose manager has been reassigned.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "admin",
+      "manager",
+      "reassigned",
+      "iam"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T128",
+    "category": "CrossDomain",
+    "depth": 4,
+    "query": "Find departments with both billing discrepancies and IAM policy violations.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "iam-audit",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "department",
+      "billing",
+      "iam",
+      "violation"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T129",
+    "category": "CrossDomain",
+    "depth": 5,
+    "query": "Full cross-system audit: billing, SAM, and IAM reconciliation with policy assessment.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "billing",
+      "sam",
+      "iam",
+      "reconcile",
+      "policy"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T130",
+    "category": "CrossDomain",
+    "depth": 5,
+    "query": "Find all cost optimization opportunities across billing, SAM, and IAM systems.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "optimization",
+      "billing",
+      "sam",
+      "iam",
+      "opportunity"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T131",
+    "category": "CrossDomain",
+    "depth": 5,
+    "query": "Identify ghost users: inactive in IAM, still in SAM, still being billed.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "sql-gen",
+      "billing-recon",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "ghost",
+      "inactive",
+      "iam",
+      "sam",
+      "billing"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T132",
+    "category": "CrossDomain",
+    "depth": 5,
+    "query": "Show vendors with billing above contract value and check user access patterns.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "vendor",
+      "overbilled",
+      "contract",
+      "access",
+      "pattern"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T133",
+    "category": "CrossDomain",
+    "depth": 5,
+    "query": "Reconcile software spend: compare billing invoices, SAM contracts, and active IAM users.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "spend",
+      "invoice",
+      "contract",
+      "iam",
+      "reconcile"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T134",
+    "category": "CrossDomain",
+    "depth": 5,
+    "query": "Find policy violations across all three systems and prioritize by financial impact.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "violation",
+      "billing",
+      "sam",
+      "iam",
+      "financial"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T135",
+    "category": "CrossDomain",
+    "depth": 5,
+    "query": "Show contractors with billing, SAM licenses, and IAM access \u2014 full lifecycle view.",
+    "workflow": [
+      "extract",
+      "billing-recon",
+      "iam-audit",
+      "sql-gen",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "contractor",
+      "billing",
+      "sam",
+      "iam",
+      "lifecycle"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T136",
+    "category": "CrossDomain",
+    "depth": 5,
+    "query": "Identify the top 5 risk areas across billing, SAM, and IAM with recommended actions.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "cross-recon"
+    ],
+    "required_topics": [
+      "risk",
+      "billing",
+      "sam",
+      "iam",
+      "action"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T137",
+    "category": "Policy",
+    "depth": 3,
+    "query": "Check if current Adobe spend complies with software procurement policy limits.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "policy-check"
+    ],
+    "required_topics": [
+      "adobe",
+      "spend",
+      "procurement",
+      "policy",
+      "compliance"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T138",
+    "category": "Policy",
+    "depth": 3,
+    "query": "Verify that all admin IAM permissions have required dual-approval per security policy.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "admin",
+      "dual-approval",
+      "security",
+      "policy"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T139",
+    "category": "Policy",
+    "depth": 3,
+    "query": "Check if contractor access periods comply with the 90-day maximum policy.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "contractor",
+      "90day",
+      "maximum",
+      "policy"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T140",
+    "category": "Policy",
+    "depth": 3,
+    "query": "Verify all invoices over $50,000 were approved by VP-level or above per policy.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "policy-check"
+    ],
+    "required_topics": [
+      "invoice",
+      "50000",
+      "vp",
+      "approval",
+      "policy"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T141",
+    "category": "Policy",
+    "depth": 3,
+    "query": "Check if software purchases in Q3 followed the preferred vendor list policy.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "policy-check"
+    ],
+    "required_topics": [
+      "vendor",
+      "preferred",
+      "q3",
+      "policy"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T142",
+    "category": "Policy",
+    "depth": 3,
+    "query": "Verify that all production access grants followed change management policy.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "production",
+      "change-management",
+      "access",
+      "policy"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T143",
+    "category": "Policy",
+    "depth": 3,
+    "query": "Check if license renewals followed the 90-day advance notice procurement policy.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "policy-check"
+    ],
+    "required_topics": [
+      "renewal",
+      "advance-notice",
+      "procurement",
+      "policy"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T144",
+    "category": "Policy",
+    "depth": 3,
+    "query": "Verify financial system access assignments comply with segregation of duties policy.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "financial",
+      "segregation",
+      "duties",
+      "policy"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T145",
+    "category": "Policy",
+    "depth": 4,
+    "query": "Full policy compliance check: billing, IAM, and SAM against all relevant policies.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "billing",
+      "iam",
+      "sam",
+      "compliance",
+      "policy"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T146",
+    "category": "Policy",
+    "depth": 4,
+    "query": "Assess policy violation severity across all systems and recommend remediation priority.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "iam-audit",
+      "policy-check"
+    ],
+    "required_topics": [
+      "violation",
+      "severity",
+      "remediation",
+      "priority"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T147",
+    "category": "Policy",
+    "depth": 4,
+    "query": "Check if emergency access grants complied with incident response policy.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "emergency",
+      "access",
+      "incident",
+      "policy"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T148",
+    "category": "Policy",
+    "depth": 4,
+    "query": "Verify all software purchases followed three-bid procurement policy requirement.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "three-bid",
+      "procurement",
+      "policy",
+      "software"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T149",
+    "category": "Policy",
+    "depth": 4,
+    "query": "Check if all data export actions comply with data governance policy.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "cross-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "export",
+      "data",
+      "governance",
+      "policy"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "task_id": "T150",
+    "category": "Policy",
+    "depth": 4,
+    "query": "Verify license true-up process followed vendor audit compliance policy.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "true-up",
+      "vendor",
+      "audit",
+      "compliance"
+    ],
+    "db": "sam",
+    "seed": 42
+  },
+  {
+    "task_id": "T151",
+    "category": "Policy",
+    "depth": 4,
+    "query": "Check board-approval policy compliance for all transactions over $100,000.",
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "policy-check"
+    ],
+    "required_topics": [
+      "board",
+      "100000",
+      "approval",
+      "policy",
+      "transaction"
+    ],
+    "db": "billing",
+    "seed": 42
+  },
+  {
+    "task_id": "T152",
+    "category": "Policy",
+    "depth": 4,
+    "query": "Assess SOX compliance for financial system access and billing approvals.",
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "sql-gen",
+      "policy-check"
+    ],
+    "required_topics": [
+      "sox",
+      "financial",
+      "billing",
+      "compliance",
+      "access"
+    ],
+    "db": "iam",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 2,
+    "query": "Show all vendors that appear in both billing and SAM records.",
+    "required_topics": [
+      "vendor",
+      "billing",
+      "sam"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "db": "billing",
+    "task_id": "T153",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 2,
+    "query": "List software products with active SAM contracts.",
+    "required_topics": [
+      "sam",
+      "contract",
+      "active"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "db": "sam",
+    "task_id": "T154",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 2,
+    "query": "Show users with access to financial systems.",
+    "required_topics": [
+      "user",
+      "financial",
+      "access"
+    ],
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "db": "iam",
+    "task_id": "T155",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 2,
+    "query": "List all vendors with invoices over $10,000.",
+    "required_topics": [
+      "vendor",
+      "invoice",
+      "threshold"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "db": "billing",
+    "task_id": "T156",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 2,
+    "query": "Show SAM entitlements for Engineering department.",
+    "required_topics": [
+      "sam",
+      "engineering",
+      "entitlement"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "db": "sam",
+    "task_id": "T157",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 2,
+    "query": "List IAM users who are also in the billing approver group.",
+    "required_topics": [
+      "iam",
+      "billing",
+      "approver"
+    ],
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "db": "iam",
+    "task_id": "T158",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 2,
+    "query": "Show all Salesforce records across billing and SAM.",
+    "required_topics": [
+      "salesforce",
+      "billing",
+      "sam"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "db": "billing",
+    "task_id": "T159",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 2,
+    "query": "Find users with both IAM access and SAM entitlements.",
+    "required_topics": [
+      "iam",
+      "sam",
+      "user"
+    ],
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "db": "iam",
+    "task_id": "T160",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 3,
+    "query": "Reconcile billing invoices with SAM contracts for Adobe.",
+    "required_topics": [
+      "billing",
+      "sam",
+      "adobe",
+      "reconcile"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "db": "billing",
+    "task_id": "T161",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 3,
+    "query": "Find users with IAM access to systems not in SAM records.",
+    "required_topics": [
+      "iam",
+      "sam",
+      "mismatch",
+      "access"
+    ],
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "cross-recon"
+    ],
+    "db": "iam",
+    "task_id": "T162",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 3,
+    "query": "Show vendors billed in Q3 and their SAM contract status.",
+    "required_topics": [
+      "vendor",
+      "billing",
+      "sam",
+      "q3"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "cross-recon"
+    ],
+    "db": "billing",
+    "task_id": "T163",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 3,
+    "query": "Identify contractors with both billing records and expired IAM access.",
+    "required_topics": [
+      "contractor",
+      "billing",
+      "iam",
+      "expired"
+    ],
+    "workflow": [
+      "extract",
+      "billing-recon",
+      "iam-audit"
+    ],
+    "db": "billing",
+    "task_id": "T164",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 3,
+    "query": "Compare SAM seat counts with IAM user counts for Microsoft.",
+    "required_topics": [
+      "sam",
+      "iam",
+      "microsoft",
+      "seats"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "cross-recon"
+    ],
+    "db": "sam",
+    "task_id": "T165",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 3,
+    "query": "Find billing entries with no corresponding SAM or IAM records.",
+    "required_topics": [
+      "billing",
+      "sam",
+      "iam",
+      "orphaned"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "cross-recon"
+    ],
+    "db": "billing",
+    "task_id": "T166",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 3,
+    "query": "Show departments with highest combined billing and SAM spend.",
+    "required_topics": [
+      "department",
+      "billing",
+      "sam",
+      "spend"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon"
+    ],
+    "db": "billing",
+    "task_id": "T167",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 3,
+    "query": "Identify over-licensed software where SAM seats exceed IAM users.",
+    "required_topics": [
+      "sam",
+      "iam",
+      "over-licensed",
+      "seats"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "cross-recon"
+    ],
+    "db": "sam",
+    "task_id": "T168",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 6,
+    "query": "Full enterprise audit: billing, SAM, IAM, policy compliance, risk scoring, recommendations.",
+    "required_topics": [
+      "billing",
+      "sam",
+      "iam",
+      "policy",
+      "risk",
+      "recommendation"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "db": "billing",
+    "task_id": "T169",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 6,
+    "query": "Complete vendor lifecycle: contracts, invoices, licenses, access, policy, optimization.",
+    "required_topics": [
+      "vendor",
+      "contract",
+      "invoice",
+      "license",
+      "access",
+      "optimization"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "db": "billing",
+    "task_id": "T170",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 6,
+    "query": "Annual compliance report: billing accuracy, SAM efficiency, IAM hygiene, policy adherence, risk.",
+    "required_topics": [
+      "billing",
+      "sam",
+      "iam",
+      "policy",
+      "compliance",
+      "annual"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "db": "billing",
+    "task_id": "T171",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 6,
+    "query": "Find all ghost resources: unused licenses, dormant accounts, orphaned billing \u2014 full cleanup plan.",
+    "required_topics": [
+      "ghost",
+      "unused",
+      "dormant",
+      "orphaned",
+      "cleanup"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "db": "billing",
+    "task_id": "T172",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 6,
+    "query": "Full contractor audit: billing charges, SAM licenses, IAM access, policy, risk, recommendations.",
+    "required_topics": [
+      "contractor",
+      "billing",
+      "sam",
+      "iam",
+      "risk",
+      "recommendation"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "db": "billing",
+    "task_id": "T173",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 6,
+    "query": "Enterprise cost optimization: identify savings across billing, SAM, IAM with policy guardrails.",
+    "required_topics": [
+      "cost",
+      "savings",
+      "billing",
+      "sam",
+      "iam",
+      "policy"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "db": "billing",
+    "task_id": "T174",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 6,
+    "query": "Full Q4 enterprise review: spend, licenses, access, compliance, risk, action plan.",
+    "required_topics": [
+      "q4",
+      "spend",
+      "license",
+      "access",
+      "compliance",
+      "action"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "db": "billing",
+    "task_id": "T175",
+    "seed": 42
+  },
+  {
+    "category": "CrossDomain",
+    "depth": 6,
+    "query": "Identify top 10 enterprise risk items across all systems with financial impact assessment.",
+    "required_topics": [
+      "risk",
+      "top10",
+      "financial",
+      "billing",
+      "sam",
+      "iam"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "policy-check",
+      "cross-recon"
+    ],
+    "db": "billing",
+    "task_id": "T176",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 2,
+    "query": "List all invoices that exceed the single-approval spending threshold.",
+    "required_topics": [
+      "invoice",
+      "threshold",
+      "approval"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "db": "billing",
+    "task_id": "T177",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 2,
+    "query": "Show all admin permissions granted in the last 30 days.",
+    "required_topics": [
+      "admin",
+      "permission",
+      "recent"
+    ],
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "db": "iam",
+    "task_id": "T178",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 2,
+    "query": "List software purchases not on the approved vendor list.",
+    "required_topics": [
+      "vendor",
+      "approved",
+      "purchase"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "db": "billing",
+    "task_id": "T179",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 2,
+    "query": "Show contracts without mandatory security review flag.",
+    "required_topics": [
+      "contract",
+      "security",
+      "review"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "db": "sam",
+    "task_id": "T180",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 2,
+    "query": "List users with access to production without required certification.",
+    "required_topics": [
+      "production",
+      "certification",
+      "access"
+    ],
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "db": "iam",
+    "task_id": "T181",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 2,
+    "query": "Show all invoices paid without matching PO (policy violation).",
+    "required_topics": [
+      "invoice",
+      "po",
+      "violation"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "db": "billing",
+    "task_id": "T182",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 2,
+    "query": "List contractor accounts exceeding 90-day access policy limit.",
+    "required_topics": [
+      "contractor",
+      "90day",
+      "policy"
+    ],
+    "workflow": [
+      "extract",
+      "iam-audit"
+    ],
+    "db": "iam",
+    "task_id": "T183",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 2,
+    "query": "Show all software licenses without documented business justification.",
+    "required_topics": [
+      "license",
+      "justification",
+      "policy"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen"
+    ],
+    "db": "sam",
+    "task_id": "T184",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 5,
+    "query": "Full policy audit: billing, IAM, SAM compliance with all relevant policies and risk scoring.",
+    "required_topics": [
+      "billing",
+      "iam",
+      "sam",
+      "policy",
+      "risk"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "iam-audit",
+      "billing-recon",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T185",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 5,
+    "query": "Assess all policy exceptions granted this year \u2014 verify authorization and financial impact.",
+    "required_topics": [
+      "exception",
+      "authorization",
+      "financial",
+      "policy"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T186",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 5,
+    "query": "Show all SOX-relevant transactions, verify approvals, check access, assess compliance.",
+    "required_topics": [
+      "sox",
+      "transaction",
+      "approval",
+      "access",
+      "compliance"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "iam-audit",
+      "cross-recon",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T187",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 5,
+    "query": "Identify policy violations by department, assess severity, verify authorization, recommend actions.",
+    "required_topics": [
+      "department",
+      "violation",
+      "severity",
+      "authorization",
+      "action"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "iam-audit",
+      "billing-recon",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T188",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 5,
+    "query": "Full procurement policy audit: verify all purchases followed policy across billing, SAM, approvals.",
+    "required_topics": [
+      "procurement",
+      "billing",
+      "sam",
+      "approval",
+      "policy"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "cross-recon",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T189",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 5,
+    "query": "Assess data governance policy compliance across IAM, billing, and SAM systems.",
+    "required_topics": [
+      "data",
+      "governance",
+      "iam",
+      "billing",
+      "sam"
+    ],
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "sql-gen",
+      "cross-recon",
+      "policy-check"
+    ],
+    "db": "iam",
+    "task_id": "T190",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 5,
+    "query": "Find all policy breaches in Q4, identify responsible parties, assess financial penalties.",
+    "required_topics": [
+      "breach",
+      "q4",
+      "responsible",
+      "financial",
+      "penalty"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T191",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 5,
+    "query": "Full access governance: verify least-privilege, segregation of duties, billing controls, policy.",
+    "required_topics": [
+      "least-privilege",
+      "segregation",
+      "billing",
+      "control",
+      "policy"
+    ],
+    "workflow": [
+      "extract",
+      "iam-audit",
+      "sql-gen",
+      "cross-recon",
+      "policy-check"
+    ],
+    "db": "iam",
+    "task_id": "T192",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 6,
+    "query": "Complete compliance report: billing, SAM, IAM policy adherence, violations, risk, remediation.",
+    "required_topics": [
+      "billing",
+      "sam",
+      "iam",
+      "violation",
+      "risk",
+      "remediation"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "cross-recon",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T193",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 6,
+    "query": "Annual policy effectiveness review: all systems, all policies, violations, trends, recommendations.",
+    "required_topics": [
+      "annual",
+      "policy",
+      "violation",
+      "trend",
+      "recommendation"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "cross-recon",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T194",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 6,
+    "query": "Full SOX compliance audit: financial systems, access controls, billing approvals, risk assessment.",
+    "required_topics": [
+      "sox",
+      "financial",
+      "access",
+      "billing",
+      "risk",
+      "audit"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "cross-recon",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T195",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 6,
+    "query": "Identify all policy gaps across billing, SAM, IAM \u2014 prioritize by financial and security risk.",
+    "required_topics": [
+      "gap",
+      "billing",
+      "sam",
+      "iam",
+      "financial",
+      "security"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "cross-recon",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T196",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 6,
+    "query": "Full vendor policy compliance: contracts, invoices, access rights, SAM records, risk scoring.",
+    "required_topics": [
+      "vendor",
+      "contract",
+      "invoice",
+      "access",
+      "sam",
+      "risk"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "cross-recon",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T197",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 6,
+    "query": "Generate board-ready compliance dashboard: policy violations, financial exposure, remediation plan.",
+    "required_topics": [
+      "board",
+      "compliance",
+      "violation",
+      "financial",
+      "remediation"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "cross-recon",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T198",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 6,
+    "query": "Full contractor compliance audit: billing, SAM, IAM, policy adherence, risk, recommendations.",
+    "required_topics": [
+      "contractor",
+      "billing",
+      "sam",
+      "iam",
+      "policy",
+      "risk"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "cross-recon",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T199",
+    "seed": 42
+  },
+  {
+    "category": "Policy",
+    "depth": 6,
+    "query": "Enterprise policy health check: all systems, all controls, effectiveness metrics, action plan.",
+    "required_topics": [
+      "enterprise",
+      "control",
+      "effectiveness",
+      "metric",
+      "action"
+    ],
+    "workflow": [
+      "extract",
+      "sql-gen",
+      "billing-recon",
+      "iam-audit",
+      "cross-recon",
+      "policy-check"
+    ],
+    "db": "billing",
+    "task_id": "T200",
+    "seed": 42
+  }
+]
