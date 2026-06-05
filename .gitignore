@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Budget state — never commit this, it's per-machine
+.budget_state.json
+
+# Environment
+.env
+.env.local
+
+# Results — generated, don't commit
+results/*.csv
+results/*.json
+!results/expected/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# SQLite
+*.db
+*.db-journal
+*.db-wal
+*.db-shm

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tca-compiler"
+version = "0.1.0"
+description = "TCA-Compiler: Compile-time graph transformation for cost-efficient LangGraph multi-agent workflows"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Vivek Kumar Singh" }
+]
+license = { text = "Apache-2.0" }
+
+dependencies = [
+    "anthropic>=0.30.0",
+    "langgraph>=0.2.0",
+    "pydantic>=2.0",
+    "pandas>=2.0",
+    "python-dotenv>=1.0",
+    "tabulate>=0.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+    "mypy>=1.10",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tca_compiler*", "tca_memory*", "benchmark*"]
