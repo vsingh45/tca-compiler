@@ -40,7 +40,13 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Optional
 
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+
+from dotenv import load_dotenv
 import anthropic
+
+load_dotenv()
 
 from tca_compiler.budget import BudgetGuard, BudgetExceededError
 from tca_compiler.compiler import TCACompiler
@@ -56,14 +62,14 @@ from benchmark.nodes.specialists import make_node
 CONDITIONS = {
     "A": {
         "label":    "No optimization",
-        "tier":     "opus",        # AllFrontier
+        "tier":     "sonnet",      # AllSonnet baseline (opus too expensive for Phase 1)
         "strategy": "full-history",
         "rewrite":  False,
         "assign":   False,
     },
     "B": {
         "label":    "Memory only",
-        "tier":     "opus",        # AllFrontier
+        "tier":     "sonnet",
         "strategy": "warm-isolated",
         "rewrite":  False,
         "assign":   False,
@@ -126,9 +132,9 @@ CONDITIONS = {
 
 # Budget per tier (USD) — Phase 1: Haiku only
 TIER_BUDGETS = {
-    "haiku":  30.00,
-    "sonnet": 50.00,
-    "opus":   0.00,    # skip opus in experiments — too expensive
+    "haiku":  5.00,
+    "sonnet": 1.50,
+    "opus":   0.50,    # small opus allowance for TierAssigner high-stakes nodes
 }
 
 RESULTS_DIR = Path("results")
@@ -217,6 +223,9 @@ def run_task(
 
     routing = get_routing(condition, task, compiler, override_tier)
     records = []
+    # Workflow-level context accumulator for full-history strategy
+    # Each node's output gets appended here so downstream nodes can inject it
+    workflow_context: list[str] = []
 
     for depth, node_class in enumerate(task["workflow"], start=1):
         node_routing = routing.get(node_class, {"tier": "haiku", "strategy": "warm-isolated"})
@@ -287,14 +296,27 @@ def run_task(
         )
 
         try:
+            # Pass accumulated workflow context for full-history injection
+            if strategy == "full-history" and workflow_context:
+                # Pre-populate node memory with all prior outputs
+                for prior_output in workflow_context:
+                    node.memory.add(
+                        "assistant", prior_output,
+                        token_count=len(prior_output.split()) * 2,
+                        tier=tier, share=False,
+                    )
             result = node.execute(task=task, workflow_depth=depth, seed=seed)
             guard.check_and_record(tier, result.record.cost_total)
             records.append(result.record)
+            # Append this node output to workflow context for downstream nodes
+            if result.answer:
+                workflow_context.append(
+                    f"{node_class}: {result.answer[:300]}"
+                )
         except BudgetExceededError:
             raise
         except Exception as e:
             print(f"    [ERROR] {node_class}: {e}")
-            # Add zero record and continue
             records.append(node._error_result(task, depth, seed, str(e)).record)
 
     SharedNamespaceStore.clear_workflow(workflow_id)
@@ -383,9 +405,10 @@ def main() -> None:
         per_tier_limits=TIER_BUDGETS,
         state_path=Path(".budget_state.json"),
     )
+    guard.reset()  # reset for each new experiment run
 
     compiler = TCACompiler(
-        accuracy_slo=0.75,
+        accuracy_slo=0.65,
         budget_ceiling=sum(TIER_BUDGETS.values()),
     )
 
