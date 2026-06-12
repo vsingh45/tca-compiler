@@ -1,7 +1,7 @@
 """
 TCA-Memory: cost-aware two-tier memory for LangGraph agent workflows.
 
-Extends WarmMemory's WarmMemoryBuffer with four new contributions:
+Extends WarmMemory v0.3.0 with four new contributions:
 
 1. Cost-aware eviction: entries evicted by token_cost/recency_weight
    rather than pure recency. High-cost + low-recency entries evicted first.
@@ -14,6 +14,9 @@ Extends WarmMemory's WarmMemoryBuffer with four new contributions:
 
 4. Provider-agnostic token counting: pluggable TokenCounter interface
    (already in tca_compiler/token_counter.py).
+
+Advanced: TwoTierStore available in warm_memory_core.langgraph for
+async parallel writes to warm + durable tiers (BaseStore integration).
 """
 from __future__ import annotations
 
@@ -26,9 +29,16 @@ from typing import Any, Optional
 
 import pandas as pd
 
-# Import WarmMemory from local editable install
+# Import WarmMemory from local editable install + bundled v0.3.0
 from warm_memory.buffer import WarmMemoryBuffer, InteractionRecord
 from warm_memory.scoring import ImportanceScorer, KeywordImportanceScorer
+
+# Optional: TwoTierStore for async parallel writes (LangGraph BaseStore)
+try:
+    from tca_memory.warm_memory_core.langgraph.two_tier import TwoTierStore
+    HAS_TWO_TIER_STORE = True
+except ImportError:
+    HAS_TWO_TIER_STORE = False
 
 from tca_compiler.pricing import Tier, TIER_PRICING
 
@@ -279,3 +289,54 @@ class SharedNamespaceStore:
     @classmethod
     def active_workflows(cls) -> list[str]:
         return list(cls._shared_buffers.keys())
+
+
+# ── TwoTierStore Factory (Optional) ──────────────────────────────────────────
+
+def make_two_tier_store(
+    workflow_id: str,
+    warm_capacity: int = 32,
+    warm_hit_threshold: float = 0.34,
+) -> Optional[TwoTierStore]:
+    """
+    Create a TwoTierStore for async parallel writes to warm + durable tiers.
+
+    Only available if WarmMemory v0.3.0+ is installed with langgraph support.
+    Returns None if TwoTierStore is not available.
+
+    Use this when you need:
+    - Async parallel writes to warm and durable tiers (max latency = max, not sum)
+    - LangGraph BaseStore interface
+    - Durable fallback with automatic warm rehydration
+
+    Args:
+        workflow_id: namespace for this two-tier store
+        warm_capacity: max entries in warm tier
+        warm_hit_threshold: relevance threshold for warm hit (0-1)
+
+    Returns:
+        TwoTierStore instance, or None if not available
+    """
+    if not HAS_TWO_TIER_STORE:
+        return None
+
+    from langgraph.store.memory import InMemoryStore
+
+    # Warm tier: WarmStore from WarmMemory
+    try:
+        from tca_memory.warm_memory_core.langgraph import WarmStore
+        warm = WarmStore(capacity=warm_capacity)
+    except ImportError:
+        # Fallback: use InMemoryStore as warm tier
+        warm = InMemoryStore()
+
+    # Durable tier: InMemoryStore (can be replaced with PostgreSQL, etc.)
+    durable = InMemoryStore()
+
+    return TwoTierStore(
+        warm=warm,
+        durable=durable,
+        warm_hit_threshold=warm_hit_threshold,
+        populate_warm_on_miss=True,
+        write_through=True,
+    )
