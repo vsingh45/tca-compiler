@@ -132,9 +132,9 @@ CONDITIONS = {
 
 # Budget per tier (USD) — Phase 1: Haiku only
 TIER_BUDGETS = {
-    "haiku":  5.00,
-    "sonnet": 1.50,
-    "opus":   0.50,    # small opus allowance for TierAssigner high-stakes nodes
+    "haiku":  10.00,
+    "sonnet": 15.00,
+    "opus":   0.50,    # minimal fallback only
 }
 
 RESULTS_DIR = Path("results")
