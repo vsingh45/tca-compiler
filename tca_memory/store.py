@@ -29,9 +29,9 @@ from typing import Any, Optional
 
 import pandas as pd
 
-# Import WarmMemory from local editable install + bundled v0.3.0
-from warm_memory.buffer import WarmMemoryBuffer, InteractionRecord
-from warm_memory.scoring import ImportanceScorer, KeywordImportanceScorer
+# Import WarmMemory from bundled v0.3.0
+from tca_memory.warm_memory_core.buffer import WarmMemoryBuffer, InteractionRecord
+from tca_memory.warm_memory_core.scoring import ImportanceScorer, KeywordImportanceScorer
 
 # Optional: TwoTierStore for async parallel writes (LangGraph BaseStore)
 try:
