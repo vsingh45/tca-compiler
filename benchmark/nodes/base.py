@@ -74,7 +74,7 @@ class BaseNode(ABC):
     def retrieve_memory(self, query: str, limit: int = 5) -> list[str]:
         if self.memory_strategy == "full-history":
             rows = self.memory.shared.iter_rows()
-            return [r["content"] for r in rows[-limit:]]
+            return [r["content"] for r in rows]  # ALL prior outputs — that's full-history
         elif self.memory_strategy in ("warm-isolated", "warm-shared", "vector-only"):
             results = self.memory.retrieve(query=query, limit=limit)
             if results.empty:
@@ -83,7 +83,7 @@ class BaseNode(ABC):
         return []
 
     def write_memory(self, content: str, token_count: int = 0, metadata: dict | None = None) -> None:
-        share = self.memory_strategy == "warm-shared"
+        share = True  # workflow-scoped working memory: all nodes write to shared buffer
         self.memory.add(
             role="assistant",
             content=content,

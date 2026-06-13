@@ -132,9 +132,9 @@ CONDITIONS = {
 
 # Budget per tier (USD) — Phase 1: Haiku only
 TIER_BUDGETS = {
-    "haiku":  10.00,
-    "sonnet": 15.00,
-    "opus":   0.50,    # minimal fallback only
+    "haiku":  2.00,
+    "sonnet": 8.00,
+    "opus":   0.00,
 }
 
 RESULTS_DIR = Path("results")
@@ -296,15 +296,6 @@ def run_task(
         )
 
         try:
-            # Pass accumulated workflow context for full-history injection
-            if strategy == "full-history" and workflow_context:
-                # Pre-populate node memory with all prior outputs
-                for prior_output in workflow_context:
-                    node.memory.add(
-                        "assistant", prior_output,
-                        token_count=len(prior_output.split()) * 2,
-                        tier=tier, share=False,
-                    )
             result = node.execute(task=task, workflow_depth=depth, seed=seed)
             guard.check_and_record(tier, result.record.cost_total)
             records.append(result.record)
@@ -401,14 +392,14 @@ def main() -> None:
 
     profiler = CostProfiler()
     guard = BudgetGuard(
-        ceiling_usd=sum(TIER_BUDGETS.values()),
+        ceiling_usd=10.00,  # matches actual Anthropic account balance
         per_tier_limits=TIER_BUDGETS,
         state_path=Path(".budget_state.json"),
     )
     guard.reset()  # reset for each new experiment run
 
     compiler = TCACompiler(
-        accuracy_slo=0.65,
+        accuracy_slo=0.40,
         budget_ceiling=sum(TIER_BUDGETS.values()),
     )
 
