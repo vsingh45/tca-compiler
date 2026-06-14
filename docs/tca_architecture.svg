@@ -44,109 +44,94 @@
   <text x="600" y="160" font-size="22" font-weight="bold" text-anchor="middle" fill="white">Workflow DAG Input</text>
   <text x="600" y="190" font-size="14" text-anchor="middle" fill="white">Extract, SQL-Gen, Billing, Policy</text>
 
-  <line x1="600" y1="220" x2="600" y2="260" stroke="#ccc" stroke-width="3"/>
-
   <!-- PROFILER -->
-  <rect x="300" y="260" width="600" height="100" rx="12" fill="url(#grad2)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
-  <text x="600" y="300" font-size="22" font-weight="bold" text-anchor="middle" fill="white">Cost Profiler</text>
-  <text x="600" y="330" font-size="14" text-anchor="middle" fill="white">SQLite-backed priors: tokens, tier, strategy</text>
-
-  <line x1="600" y1="360" x2="600" y2="400" stroke="#ccc" stroke-width="3"/>
+  <rect x="300" y="280" width="600" height="100" rx="12" fill="url(#grad2)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
+  <text x="600" y="320" font-size="22" font-weight="bold" text-anchor="middle" fill="white">Cost Profiler</text>
+  <text x="600" y="350" font-size="14" text-anchor="middle" fill="white">SQLite-backed priors: tokens, tier, strategy</text>
 
   <!-- ANALYSIS -->
   <!-- Estimator -->
-  <rect x="80" y="400" width="280" height="150" rx="12" fill="url(#grad3)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
-  <text x="220" y="440" font-size="18" font-weight="bold" text-anchor="middle" fill="white">Estimator</text>
-  <text x="220" y="465" font-size="13" text-anchor="middle" fill="white">Memory Injection</text>
-  <circle cx="150" cy="510" r="25" fill="rgba(255,255,255,0.3)"/>
-  <text x="150" y="520" font-size="14" font-weight="bold" text-anchor="middle" fill="white">O(d2)</text>
-  <text x="220" y="540" font-size="12" text-anchor="middle" fill="white">Growth by depth</text>
+  <rect x="80" y="430" width="280" height="150" rx="12" fill="url(#grad3)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
+  <text x="220" y="470" font-size="18" font-weight="bold" text-anchor="middle" fill="white">Estimator</text>
+  <text x="220" y="495" font-size="13" text-anchor="middle" fill="white">Memory Injection</text>
+  <circle cx="150" cy="540" r="25" fill="rgba(255,255,255,0.3)"/>
+  <text x="150" y="550" font-size="14" font-weight="bold" text-anchor="middle" fill="white">O(d2)</text>
+  <text x="220" y="570" font-size="12" text-anchor="middle" fill="white">Growth by depth</text>
 
   <!-- Rewriter -->
-  <rect x="460" y="400" width="280" height="150" rx="12" fill="url(#grad4)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
-  <text x="600" y="440" font-size="18" font-weight="bold" text-anchor="middle" fill="white">Graph Rewriter</text>
-  <text x="600" y="465" font-size="13" text-anchor="middle" fill="white">DAG Optimizations</text>
-  <text x="570" y="495" font-size="12" fill="white">T1: Node Fusion</text>
-  <text x="570" y="515" font-size="12" fill="white">T2: Reorder Nodes</text>
-  <text x="570" y="535" font-size="12" fill="white">T3: Shared Namespace</text>
+  <rect x="460" y="430" width="280" height="150" rx="12" fill="url(#grad4)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
+  <text x="600" y="470" font-size="18" font-weight="bold" text-anchor="middle" fill="white">Graph Rewriter</text>
+  <text x="600" y="495" font-size="13" text-anchor="middle" fill="white">DAG Optimizations</text>
+  <text x="570" y="525" font-size="12" fill="white">T1: Node Fusion</text>
+  <text x="570" y="545" font-size="12" fill="white">T2: Reorder Nodes</text>
+  <text x="570" y="565" font-size="12" fill="white">T3: Shared Namespace</text>
 
   <!-- Tier Assigner -->
-  <rect x="840" y="400" width="280" height="150" rx="12" fill="url(#grad5)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
-  <text x="980" y="440" font-size="18" font-weight="bold" text-anchor="middle" fill="white">Tier Assigner</text>
-  <text x="980" y="465" font-size="13" text-anchor="middle" fill="white">Joint Optimization</text>
-  <text x="950" y="495" font-size="12" fill="white">Haiku / Sonnet</text>
-  <text x="950" y="515" font-size="12" fill="white">Accuracy SLO</text>
-  <text x="950" y="535" font-size="12" fill="white">Minimum TCA</text>
-
-  <!-- Arrows converging -->
-  <path d="M 220 550 Q 350 590 380 620" stroke="#ccc" stroke-width="2.5" fill="none"/>
-  <path d="M 600 550 L 600 620" stroke="#ccc" stroke-width="2.5" fill="none"/>
-  <path d="M 980 550 Q 850 590 820 620" stroke="#ccc" stroke-width="2.5" fill="none"/>
+  <rect x="840" y="430" width="280" height="150" rx="12" fill="url(#grad5)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
+  <text x="980" y="470" font-size="18" font-weight="bold" text-anchor="middle" fill="white">Tier Assigner</text>
+  <text x="980" y="495" font-size="13" text-anchor="middle" fill="white">Joint Optimization</text>
+  <text x="950" y="525" font-size="12" fill="white">Haiku / Sonnet</text>
+  <text x="950" y="545" font-size="12" fill="white">Accuracy SLO</text>
+  <text x="950" y="565" font-size="12" fill="white">Minimum TCA</text>
 
   <!-- COMPILER -->
-  <rect x="200" y="620" width="800" height="110" rx="12" fill="url(#grad6)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
-  <text x="600" y="665" font-size="22" font-weight="bold" text-anchor="middle" fill="white">TCA-Compiler Optimizer</text>
-  <text x="600" y="695" font-size="14" text-anchor="middle" fill="white">Enumerate strategy,tier to estimate to filter SLO to select minimum-TCA</text>
-
-  <line x1="600" y1="730" x2="600" y2="770" stroke="#ccc" stroke-width="3"/>
+  <rect x="200" y="650" width="800" height="110" rx="12" fill="url(#grad6)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
+  <text x="600" y="695" font-size="22" font-weight="bold" text-anchor="middle" fill="white">TCA-Compiler Optimizer</text>
+  <text x="600" y="725" font-size="14" text-anchor="middle" fill="white">Enumerate strategy,tier to estimate to filter SLO to select minimum-TCA</text>
 
   <!-- ROUTING TABLE -->
-  <rect x="200" y="770" width="800" height="140" rx="12" fill="#2d3748" opacity="0.95" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
-  <text x="600" y="805" font-size="20" font-weight="bold" text-anchor="middle" fill="#48bb78">Routing Table (Per-Node)</text>
+  <rect x="200" y="810" width="800" height="140" rx="12" fill="#2d3748" opacity="0.95" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
+  <text x="600" y="845" font-size="20" font-weight="bold" text-anchor="middle" fill="#48bb78">Routing Table (Per-Node)</text>
 
-  <rect x="230" y="825" width="170" height="70" rx="6" fill="#1a202c" stroke="#48bb78" stroke-width="2"/>
-  <text x="315" y="850" font-size="13" font-weight="bold" text-anchor="middle" fill="#48bb78">extract</text>
-  <text x="315" y="870" font-size="11" text-anchor="middle" fill="#ddd">haiku | warm-shared</text>
+  <rect x="230" y="865" width="170" height="70" rx="6" fill="#1a202c" stroke="#48bb78" stroke-width="2"/>
+  <text x="315" y="890" font-size="13" font-weight="bold" text-anchor="middle" fill="#48bb78">extract</text>
+  <text x="315" y="910" font-size="11" text-anchor="middle" fill="#ddd">haiku | warm-shared</text>
 
-  <rect x="420" y="825" width="170" height="70" rx="6" fill="#1a202c" stroke="#4299e1" stroke-width="2"/>
-  <text x="505" y="850" font-size="13" font-weight="bold" text-anchor="middle" fill="#4299e1">sql-gen</text>
-  <text x="505" y="870" font-size="11" text-anchor="middle" fill="#ddd">sonnet | warm-iso</text>
+  <rect x="420" y="865" width="170" height="70" rx="6" fill="#1a202c" stroke="#4299e1" stroke-width="2"/>
+  <text x="505" y="890" font-size="13" font-weight="bold" text-anchor="middle" fill="#4299e1">sql-gen</text>
+  <text x="505" y="910" font-size="11" text-anchor="middle" fill="#ddd">sonnet | warm-iso</text>
 
-  <rect x="610" y="825" width="170" height="70" rx="6" fill="#1a202c" stroke="#ed8936" stroke-width="2"/>
-  <text x="695" y="850" font-size="13" font-weight="bold" text-anchor="middle" fill="#ed8936">billing</text>
-  <text x="695" y="870" font-size="11" text-anchor="middle" fill="#ddd">haiku | warm-shared</text>
+  <rect x="610" y="865" width="170" height="70" rx="6" fill="#1a202c" stroke="#ed8936" stroke-width="2"/>
+  <text x="695" y="890" font-size="13" font-weight="bold" text-anchor="middle" fill="#ed8936">billing</text>
+  <text x="695" y="910" font-size="11" text-anchor="middle" fill="#ddd">haiku | warm-shared</text>
 
-  <rect x="800" y="825" width="170" height="70" rx="6" fill="#1a202c" stroke="#9f7aea" stroke-width="2"/>
-  <text x="885" y="850" font-size="13" font-weight="bold" text-anchor="middle" fill="#9f7aea">policy</text>
-  <text x="885" y="870" font-size="11" text-anchor="middle" fill="#ddd">sonnet | warm-iso</text>
-
-  <line x1="600" y1="910" x2="600" y2="950" stroke="#ccc" stroke-width="3"/>
+  <rect x="800" y="865" width="170" height="70" rx="6" fill="#1a202c" stroke="#9f7aea" stroke-width="2"/>
+  <text x="885" y="890" font-size="13" font-weight="bold" text-anchor="middle" fill="#9f7aea">policy</text>
+  <text x="885" y="910" font-size="11" text-anchor="middle" fill="#ddd">sonnet | warm-iso</text>
 
   <!-- MEMORY -->
-  <rect x="200" y="950" width="800" height="120" rx="12" fill="url(#grad7)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
-  <text x="600" y="985" font-size="20" font-weight="bold" text-anchor="middle" fill="#2d3748">TCA-Memory Backend + Execution</text>
-  <text x="350" y="1020" font-size="12" fill="#2d3748">Two-tier storage warm+durable</text>
-  <text x="350" y="1045" font-size="12" fill="#2d3748">Cost-aware eviction</text>
-  <text x="700" y="1020" font-size="12" fill="#2d3748">Retrieve, API call, record costs</text>
-  <text x="700" y="1045" font-size="12" fill="#2d3748">Update profiler with learning</text>
-
-  <line x1="600" y1="1070" x2="600" y2="1110" stroke="#ccc" stroke-width="3"/>
+  <rect x="200" y="1010" width="800" height="120" rx="12" fill="url(#grad7)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
+  <text x="600" y="1045" font-size="20" font-weight="bold" text-anchor="middle" fill="#2d3748">TCA-Memory Backend + Execution</text>
+  <text x="350" y="1080" font-size="12" fill="#2d3748">Two-tier storage warm+durable</text>
+  <text x="350" y="1105" font-size="12" fill="#2d3748">Cost-aware eviction</text>
+  <text x="700" y="1080" font-size="12" fill="#2d3748">Retrieve, API call, record costs</text>
+  <text x="700" y="1105" font-size="12" fill="#2d3748">Update profiler with learning</text>
 
   <!-- RESULTS -->
-  <rect x="200" y="1110" width="800" height="140" rx="12" fill="url(#grad8)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
-  <text x="600" y="1150" font-size="22" font-weight="bold" text-anchor="middle" fill="white">Results to CSV Output</text>
-  <text x="350" y="1185" font-size="12" fill="white">cost_total per node</text>
-  <text x="350" y="1205" font-size="12" fill="white">cost_inference API</text>
-  <text x="350" y="1225" font-size="12" fill="white">cost_injection memory</text>
-  <text x="600" y="1185" font-size="12" fill="white">accuracy metrics</text>
-  <text x="600" y="1205" font-size="12" fill="white">warm hit rate</text>
-  <text x="600" y="1225" font-size="12" fill="white">strategy used</text>
+  <rect x="200" y="1190" width="800" height="140" rx="12" fill="url(#grad8)" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))"/>
+  <text x="600" y="1230" font-size="22" font-weight="bold" text-anchor="middle" fill="white">Results to CSV Output</text>
+  <text x="350" y="1265" font-size="12" fill="white">cost_total per node</text>
+  <text x="350" y="1285" font-size="12" fill="white">cost_inference API</text>
+  <text x="350" y="1305" font-size="12" fill="white">cost_injection memory</text>
+  <text x="600" y="1265" font-size="12" fill="white">accuracy metrics</text>
+  <text x="600" y="1285" font-size="12" fill="white">warm hit rate</text>
+  <text x="600" y="1305" font-size="12" fill="white">strategy used</text>
 
   <!-- KEY METRICS -->
-  <text x="600" y="1320" font-size="15" font-weight="bold" text-anchor="middle" fill="#2d3748">70% cost reduction | 27.6% memory at depth 6 | Linear injection growth R²=0.999</text>
+  <text x="600" y="1400" font-size="15" font-weight="bold" text-anchor="middle" fill="#2d3748">70% cost reduction | 27.6% memory at depth 6 | Linear injection growth R²=0.999</text>
 
   <!-- LEGEND -->
-  <text x="600" y="1380" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a202c">Component Functions</text>
+  <text x="600" y="1460" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a202c">Component Functions</text>
 
-  <rect x="250" y="1395" width="16" height="16" fill="url(#grad2)"/>
-  <text x="280" y="1406" font-size="11" fill="#2d3748">CostProfiler: Maintains learned cost priors</text>
+  <rect x="250" y="1475" width="16" height="16" fill="url(#grad2)"/>
+  <text x="280" y="1486" font-size="11" fill="#2d3748">CostProfiler: Maintains learned cost priors</text>
 
-  <rect x="250" y="1420" width="16" height="16" fill="url(#grad3)"/>
-  <text x="280" y="1431" font-size="11" fill="#2d3748">Estimator: Predicts memory cost by depth</text>
+  <rect x="250" y="1500" width="16" height="16" fill="url(#grad3)"/>
+  <text x="280" y="1511" font-size="11" fill="#2d3748">Estimator: Predicts memory cost by depth</text>
 
-  <rect x="700" y="1395" width="16" height="16" fill="url(#grad4)"/>
-  <text x="730" y="1406" font-size="11" fill="#2d3748">Rewriter: Graph optimizations T1T2T3</text>
+  <rect x="700" y="1475" width="16" height="16" fill="url(#grad4)"/>
+  <text x="730" y="1486" font-size="11" fill="#2d3748">Rewriter: Graph optimizations T1T2T3</text>
 
-  <rect x="700" y="1420" width="16" height="16" fill="url(#grad5)"/>
-  <text x="730" y="1431" font-size="11" fill="#2d3748">Assigner: Selects optimal tier, strategy</text>
+  <rect x="700" y="1500" width="16" height="16" fill="url(#grad5)"/>
+  <text x="730" y="1511" font-size="11" fill="#2d3748">Assigner: Selects optimal tier, strategy</text>
 </svg>
