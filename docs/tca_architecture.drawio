@@ -109,7 +109,7 @@
         </mxCell>
 
         <!-- KEY METRICS -->
-        <mxCell id="metrics" value="Key Results: 59% cost reduction | 27.6% memory at depth 6 | O(d²) confirmed" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=top;fillColor=none;strokeColor=none;textColor=#2d3748;" vertex="1" parent="1">
+        <mxCell id="metrics" value="Key Results: 70% cost reduction | 27.6% memory at depth 6 | Linear injection growth R²=0.999" style="text;html=1;fontSize=14;fontStyle=1;align=center;verticalAlign=top;fillColor=none;strokeColor=none;textColor=#2d3748;" vertex="1" parent="1">
           <mxGeometry x="0" y="1310" width="1200" height="30" as="geometry"/>
         </mxCell>
 

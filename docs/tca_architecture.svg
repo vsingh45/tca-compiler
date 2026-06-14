@@ -133,7 +133,7 @@
   <text x="600" y="1225" font-size="12" fill="white">strategy used</text>
 
   <!-- KEY METRICS -->
-  <text x="600" y="1320" font-size="15" font-weight="bold" text-anchor="middle" fill="#2d3748">59% cost reduction | 27.6% memory at depth 6 | O(d2) confirmed</text>
+  <text x="600" y="1320" font-size="15" font-weight="bold" text-anchor="middle" fill="#2d3748">70% cost reduction | 27.6% memory at depth 6 | Linear injection growth R²=0.999</text>
 
   <!-- LEGEND -->
   <text x="600" y="1380" font-size="13" font-weight="bold" text-anchor="middle" fill="#1a202c">Component Functions</text>
