@@ -1,9 +1,9 @@
 # TCA-Compiler: Measuring and Optimizing Memory Injection Cost in LLM Agent Workflows
 
-Reference implementation and benchmark for the IEEE Access paper:
+Reference implementation and benchmark for the paper:
 
 > **Beyond Inference: Measuring and Optimizing Memory Injection Cost in LLM Agent Workflows**
-> Vivek Kumar Singh, Gautam Bhowmick, Preeti Priyam (2026)
+> Vivek Kumar Singh
 
 ---
 
@@ -366,13 +366,12 @@ guard.reset()
 If you use this code or benchmark, please cite:
 
 ```bibtex
-@article{singh2026tca,
+@misc{singh2026tca,
   title   = {Beyond Inference: Measuring and Optimizing Memory Injection Cost
              in LLM Agent Workflows},
-  author  = {Singh, Vivek Kumar and Bhowmick, Gautam and Priyam, Preeti},
-  journal = {IEEE Access},
+  author  = {Singh, Vivek Kumar},
   year    = {2026},
-  note    = {Under review}
+  url     = {https://github.com/vsingh45/tca-compiler}
 }
 ```
 

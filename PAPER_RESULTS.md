@@ -1,6 +1,5 @@
 # Beyond Inference: Paper Results
 
-**Target:** MLSys 2027  
 **Status:** ✓ Complete (Haiku + Sonnet experiments, 2800 records, $11.38 spend)
 
 ---
@@ -149,7 +148,7 @@ This heterogeneous routing is the key to the 59% cost reduction — using cheape
 
 ---
 
-## Submission Checklist for MLSys 2027
+## Paper Completion Checklist
 
 - [x] Haiku experiments complete (conditions A-H, 200 tasks each)
 - [x] Sonnet experiments complete (conditions A+H, 200 tasks each)
@@ -159,7 +158,7 @@ This heterogeneous routing is the key to the 59% cost reduction — using cheape
 - [x] Production projection table (Table 3) calculated
 - [x] Code committed to GitHub (github.com/vsingh45/tca-compiler)
 - [ ] Paper draft filled with real numbers
-- [ ] Review manuscript updated with results
+- [ ] Manuscript updated with results
 
 ---
 
