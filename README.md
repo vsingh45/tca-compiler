@@ -7,6 +7,12 @@ Reference implementation and benchmark for the paper:
 
 ---
 
+## System Architecture
+
+![TCA-Compiler Architecture](architecture.svg)
+
+---
+
 ## What this repo contains
 
 | Path | Description |
@@ -19,104 +25,6 @@ Reference implementation and benchmark for the paper:
 | `results/` | Raw per-node CSV output from all experiment runs |
 
 ---
-
-## System Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    LLM AGENT WORKFLOW (DAG)                            │
-│  Task: [Extract] → [SQL-Gen] → [Billing-Recon] → [Policy-Check]      │
-│         depth=1      depth=2      depth=3           depth=4             │
-└──────────────────────────────┬──────────────────────────────────────────┘
-                               │
-                    ┌──────────▼──────────┐
-                    │   COST PROFILER     │
-                    │  (SQLite-backed)    │
-                    │  Per-node priors:   │
-                    │  - input_tokens     │
-                    │  - output_tokens    │
-                    │  - tier × strategy  │
-                    └──────────┬──────────┘
-                               │
-        ┌──────────────────────┼──────────────────────┐
-        │                      │                      │
-   ┌────▼────┐        ┌────────▼────────┐      ┌─────▼──────┐
-   │ESTIMATOR│        │ GRAPH REWRITER  │      │ TIER       │
-   │          │        │                │      │ ASSIGNER   │
-   │Memory    │        │ T1: Fusion      │      │            │
-   │Injection │        │ T2: Reordering  │      │Accuracy    │
-   │Cost      │        │ T3: Namespace   │      │SLO Aware   │
-   │O(d²)     │        │                │      │Joint       │
-   │Growth    │        │DAG Rewrites     │      │Optimization│
-   │by depth  │        │                │      │            │
-   └────┬─────┘        └────────┬────────┘      └─────┬──────┘
-        │                       │                     │
-        │       ┌───────────────┼───────────────┐    │
-        │       │               │               │    │
-        └───────┼───────────────┼───────────────┼────┘
-                │               │               │
-        ┌───────▼───────────────▼───────────────▼────┐
-        │         TCA-COMPILER OPTIMIZER             │
-        │                                             │
-        │  for each node in workflow:                │
-        │    enumerate (strategy, tier) pairs        │
-        │    estimate cost + memory injection        │
-        │    filter by accuracy SLO                  │
-        │    select minimum-TCA candidate            │
-        └───────────┬─────────────────────────────────┘
-                    │
-        ┌───────────▼──────────────┐
-        │  ROUTING TABLE           │
-        │  (Per-node assignments)  │
-        │                          │
-        │  extract:   haiku        │
-        │            warm-shared   │
-        │            cost=$0.0015  │
-        │                          │
-        │  sql-gen:   sonnet       │
-        │            warm-isolated │
-        │            cost=$0.0042  │
-        │                          │
-        │  billing:   haiku        │
-        │            warm-shared   │
-        │            cost=$0.0018  │
-        │                          │
-        │  policy:    sonnet       │
-        │            warm-isolated │
-        │            cost=$0.0056  │
-        └───────────┬──────────────┘
-                    │
-        ┌───────────▼──────────────┐
-        │  TCA-MEMORY BACKEND      │
-        │                          │
-        │  • Two-tier storage      │
-        │  • Cost-aware eviction   │
-        │  • Shared namespaces     │
-        │  • Warm + durable tiers  │
-        └───────────┬──────────────┘
-                    │
-        ┌───────────▼──────────────┐
-        │  EXECUTION + RECORDING   │
-        │                          │
-        │  for each node:          │
-        │  1. Retrieve memory      │
-        │  2. Call API (tier)      │
-        │  3. Record costs         │
-        │  4. Update profiler      │
-        │  5. Write to CSV         │
-        └───────────┬──────────────┘
-                    │
-        ┌───────────▼──────────────┐
-        │  RESULTS                 │
-        │  (CSV per-node records)  │
-        │                          │
-        │  • cost_total            │
-        │  • cost_inference        │
-        │  • cost_injection        │
-        │  • accuracy metrics      │
-        │  • memory state          │
-        └──────────────────────────┘
-```
 
 ### Key Components
 
