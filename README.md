@@ -9,7 +9,10 @@ Reference implementation and benchmark for the paper:
 
 ## System Architecture
 
-![TCA-Compiler Architecture](architecture.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="architecture.svg">
+  <img src="architecture.svg" alt="TCA-Compiler Architecture" width="100%">
+</picture>
 
 ---
 
