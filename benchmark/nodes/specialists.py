@@ -380,6 +380,7 @@ def make_node(
     tier: str,
     memory_strategy: str,
     condition: str,
+    shared_capacity: int = 32,
 ) -> BaseNode:
     """Factory: create the right node instance for a given node_class."""
     cls = NODE_CLASSES.get(node_class)
@@ -396,4 +397,5 @@ def make_node(
         tier=tier,
         memory_strategy=memory_strategy,
         condition=condition,
+        shared_capacity=shared_capacity,
     )

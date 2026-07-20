@@ -215,6 +215,7 @@ def run_task(
     override_tier: Optional[str] = None,
     seed: int = 42,
     dry: bool = False,
+    warm_capacity: int = 32,
 ) -> list[TCARecord]:
     """Run a single task through its full workflow for one condition."""
 
@@ -293,6 +294,7 @@ def run_task(
             tier=tier,
             memory_strategy=strategy,
             condition=condition,
+            shared_capacity=warm_capacity,
         )
 
         try:
@@ -345,7 +347,20 @@ def main() -> None:
     parser.add_argument("--max-tasks", type=int, default=None,
                         help="Limit number of tasks (for testing)")
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--warm-capacity", type=int, default=32,
+                        help="Warm-tier capacity K per namespace (reduce, e.g. to 2, to force warm misses)")
+    parser.add_argument("--haiku-budget", type=float, default=None,
+                        help="Override haiku tier budget (USD) for this run")
+    parser.add_argument("--sonnet-budget", type=float, default=None,
+                        help="Override sonnet tier budget (USD) for this run")
+    parser.add_argument("--ceiling", type=float, default=10.00,
+                        help="Overall budget ceiling (USD) for this run")
     args = parser.parse_args()
+
+    if args.haiku_budget is not None:
+        TIER_BUDGETS["haiku"] = args.haiku_budget
+    if args.sonnet_budget is not None:
+        TIER_BUDGETS["sonnet"] = args.sonnet_budget
 
     # Resolve conditions
     run_conditions = (
@@ -392,7 +407,7 @@ def main() -> None:
 
     profiler = CostProfiler()
     guard = BudgetGuard(
-        ceiling_usd=10.00,  # matches actual Anthropic account balance
+        ceiling_usd=args.ceiling,
         per_tier_limits=TIER_BUDGETS,
         state_path=Path(".budget_state.json"),
     )
@@ -428,6 +443,7 @@ def main() -> None:
                         override_tier=tier if not CONDITIONS[condition].get("assign") else None,
                         seed=args.seed,
                         dry=(args.mode == "dry"),
+                        warm_capacity=args.warm_capacity,
                     )
 
                     write_results(records, output_path)
