@@ -12,6 +12,10 @@ RUNS below. Per-task cost = sum of cost_total over all node rows of the
 task. End-to-end accuracy = answer_correct of the deepest node of the task.
 95% CIs use the t distribution (df = n_seeds - 1).
 
+Blocks are printed in manuscript order: Tables II-VII and the Fig. 3 depth
+curves. Table I is the benchmark composition (experiment design, not a
+measured result) and is therefore not regenerated here.
+
 After new experiment runs, update the filenames in RUNS.
 """
 from __future__ import annotations
@@ -30,7 +34,7 @@ RUNS = {
     "A_mid": {
         42: "tca_results_real_20260613_014418.csv",
         7:  "tca_results_real_20260723_085114.csv",
-        99: None,  # TODO: fill in after running  --tier sonnet --conditions A --seed 99
+        99: "tca_results_real_20260723_230302.csv",
     },
     # Mid-tier full system, condition H, one file per seed
     "H_mid": {
@@ -38,8 +42,8 @@ RUNS = {
         7:  "tca_results_real_20260613_213817.csv",
         99: "tca_results_real_20260613_223022.csv",
     },
-    # Small-tier (haiku) ablation. Clean mode: A-F from the June 12 evening
-    # run; G and H from fresh runs (fill in). Gold mode: one file for all.
+    # Small-tier (haiku) ablation. Conditions A-F share the June 12 run;
+    # G and H are fresh full 200-task runs.
     "ablation_small": {
         "A": ("tca_results_real_20260612_200554.csv", "A"),
         "B": ("tca_results_real_20260612_200554.csv", "B"),
@@ -126,6 +130,12 @@ def ci95(values: list[float]) -> tuple[float, float, float]:
     return m, m - h, m + h
 
 
+def header(title: str) -> None:
+    print("=" * 72)
+    print(title)
+    print("=" * 72)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--results-dir", default="results")
@@ -133,18 +143,60 @@ def main() -> None:
     rd = Path(args.results_dir)
     missing: list[str] = []
 
-    # ── Table: per-seed mid-tier (paper Table V) ─────────────────────────
-    print("=" * 72)
-    print("TABLE V — per-seed cost and accuracy, mid tier")
-    print("=" * 72)
+    # Mid-tier per-seed statistics, loaded once and reused by Tables III-VI
+    # and the Fig. 3 depth curves.
     seed_stats: dict[str, dict[int, dict]] = {"A": {}, "H": {}}
+    mid_rows: dict[str, dict[int, list[dict]]] = {"A": {}, "H": {}}
     for cond, key in (("A", "A_mid"), ("H", "H_mid")):
         for seed, fname in RUNS[key].items():
             if fname is None:
                 missing.append(f"{key} seed {seed}")
                 continue
-            s = summarize(load(rd / fname), cond)
-            seed_stats[cond][seed] = s
+            rows = load(rd / fname)
+            mid_rows[cond][seed] = rows
+            seed_stats[cond][seed] = summarize(rows, cond)
+
+    # ── Table II: small-tier ablation ────────────────────────────────────
+    header("TABLE II — per-task TCA, memory fraction, and accuracy by ablation "
+           "condition\n            (small tier, seed 42, 200 tasks each)")
+    abl = {}
+    for cond, (fname, c) in RUNS["ablation_small"].items():
+        if fname is None:
+            missing.append(f"ablation {cond}")
+            continue
+        s = summarize(load(rd / fname), c)
+        abl[cond] = s
+        print(f"  {cond}  n={s['n']:3d}  cost/task ${s['cost']:.6f}  "
+              f"mem {s['mem_pct']:4.1f}%  acc {s['acc']:.3f}")
+    if "A" in abl and "H" in abl:
+        print(f"  => small-tier cost reduction "
+              f"{(1 - abl['H']['cost'] / abl['A']['cost']) * 100:.1f}%")
+
+    # ── Table III: production-scale projection ───────────────────────────
+    # Projected from the published six-decimal three-seed mean per-task costs
+    # (the means printed under Table IV below), so these figures reproduce
+    # Table III of the manuscript exactly. Carrying full float precision
+    # instead shifts the 100,000/day row by about 0.002 percent.
+    print()
+    header("TABLE III — projected annual cost at enterprise query volumes "
+           "(mid tier)")
+    if seed_stats["A"] and seed_stats["H"]:
+        a6 = round(statistics.mean(s["cost"] for s in seed_stats["A"].values()), 6)
+        h6 = round(statistics.mean(s["cost"] for s in seed_stats["H"].values()), 6)
+        for daily in (1_000, 10_000, 100_000):
+            ay = a6 * daily * 365
+            hy = h6 * daily * 365
+            print(f"  {daily:>7,} tasks/day  baseline ${ay:>10,.0f}/yr  "
+                  f"TCA ${hy:>9,.0f}/yr  savings ${ay - hy:>9,.0f}/yr")
+
+    # ── Table IV: per-seed mid-tier ──────────────────────────────────────
+    print()
+    header("TABLE IV — per-seed cost and end-to-end accuracy, mid tier")
+    for cond, key in (("A", "A_mid"), ("H", "H_mid")):
+        for seed in RUNS[key]:
+            s = seed_stats[cond].get(seed)
+            if not s:
+                continue
             print(f"  {cond}  seed {seed:>2}  n={s['n']:3d}  "
                   f"cost/task ${s['cost']:.6f}  acc {s['acc']:.3f}")
     for cond in ("A", "H"):
@@ -162,34 +214,14 @@ def main() -> None:
         print(f"  => mid-tier cost reduction {(1 - h / a) * 100:.1f}%   "
               f"accuracy delta {ha - aa:+.3f}")
 
-    # ── Table: small-tier ablation (paper Table I) ───────────────────────
+    # ── Table V: per-category, seed 42 ───────────────────────────────────
     print()
-    print("=" * 72)
-    print("TABLE I — ablation, small tier")
-    print("=" * 72)
-    abl = {}
-    for cond, (fname, c) in RUNS["ablation_small"].items():
-        if fname is None:
-            missing.append(f"ablation {cond}")
+    header("TABLE V — per-category cost and accuracy (mid tier, seed 42, "
+           "40 tasks per category)")
+    for cond in ("A", "H"):
+        rows = mid_rows[cond].get(42)
+        if rows is None:
             continue
-        s = summarize(load(rd / fname), c)
-        abl[cond] = s
-        print(f"  {cond}  n={s['n']:3d}  cost/task ${s['cost']:.6f}  "
-              f"mem {s['mem_pct']:4.1f}%  acc {s['acc']:.3f}")
-    if "A" in abl and "H" in abl:
-        print(f"  => small-tier cost reduction "
-              f"{(1 - abl['H']['cost'] / abl['A']['cost']) * 100:.1f}%")
-
-    # ── Table: per-category (paper Table IV), seed 42 ────────────────────
-    print()
-    print("=" * 72)
-    print("TABLE IV — per-category cost and accuracy (mid tier, seed 42)")
-    print("=" * 72)
-    for cond, key in (("A", "A_mid"), ("H", "H_mid")):
-        fname = RUNS[key].get(42)
-        if fname is None:
-            continue
-        rows = load(rd / fname)
         bycat: dict[str, dict[str, list[dict]]] = defaultdict(lambda: defaultdict(list))
         for r in rows:
             if r["condition"] == cond:
@@ -200,29 +232,39 @@ def main() -> None:
             print(f"  {cond}  {cat:<12} n={len(bycat[cat]):3d}  "
                   f"cost ${statistics.mean(costs):.4f}  acc {statistics.mean(accs):.3f}")
 
-    # ── Decomposition (paper Table on TCA components), seed 42 ───────────
+    # ── Table VI: TCA decomposition, seed 42 ─────────────────────────────
     print()
-    print("=" * 72)
-    print("TCA DECOMPOSITION — per task, mid tier, seed 42")
-    print("=" * 72)
-    for cond, key in (("A", "A_mid"), ("H", "H_mid")):
-        fname = RUNS[key].get(42)
-        if fname is None:
+    header("TABLE VI — TCA cost decomposition, per task (mid tier, seed 42)")
+    for cond in ("A", "H"):
+        s = seed_stats[cond].get(42)
+        if not s:
             continue
-        s = summarize(load(rd / fname), cond)
         c = s["components"]
         print(f"  {cond}: inference ${c['inference']:.6f}  "
               f"injection ${c['injection']:.6f}  miss ${c['miss']:.6f}  "
               f"accum ${c['accum']:.6f}  total ${s['cost']:.6f}")
 
-    # ── Depth curve (paper Fig. 3) — baseline A mid, seed 42 ─────────────
+    # ── Table VII: capacity sensitivity ──────────────────────────────────
     print()
-    print("=" * 72)
-    print("FIG 3 — injection share and tokens by depth (A, mid tier, seed 42)")
-    print("=" * 72)
-    fname = RUNS["A_mid"].get(42)
-    if fname:
-        rows = [r for r in load(rd / fname) if r["condition"] == "A"]
+    header("TABLE VII — memory capacity sensitivity (condition B, small tier, "
+           "seed 42)")
+    for k, (fname, c) in sorted(RUNS["capacity"].items(), reverse=True):
+        if fname is None:
+            missing.append(f"capacity K={k}")
+            continue
+        s = summarize(load(rd / fname), c)
+        print(f"  K={k:<3} n={s['n']:3d}  cost/task ${s['cost']:.6f}  "
+              f"acc {s['acc']:.3f}  inj tokens/task {s['inj_tokens_per_task']:.0f}  "
+              f"fallback events {s['fallbacks']}  "
+              f"retrieval {s['retrieval_ms']:.1f} ms")
+
+    # ── Fig. 3 data series: depth curve, baseline A, mid tier, seed 42 ───
+    print()
+    header("FIG. 3 — injection share and injected tokens by depth "
+           "(condition A, mid tier, seed 42)")
+    rows = mid_rows["A"].get(42)
+    if rows is not None:
+        rows = [r for r in rows if r["condition"] == "A"]
         byd_cost = defaultdict(lambda: [0.0, 0.0])
         byd_tok = defaultdict(list)
         for r in rows:
@@ -234,21 +276,6 @@ def main() -> None:
             i, t = byd_cost[d]
             print(f"  depth {d}: injection {100 * i / t:5.1f}% of node cost | "
                   f"mean injected tokens {statistics.mean(byd_tok[d]):.0f}")
-
-    # ── Capacity sensitivity (miss-path experiment) ──────────────────────
-    print()
-    print("=" * 72)
-    print("CAPACITY SENSITIVITY — condition B, small tier, warm capacity K")
-    print("=" * 72)
-    for k, (fname, c) in sorted(RUNS["capacity"].items(), reverse=True):
-        if fname is None:
-            missing.append(f"capacity K={k}")
-            continue
-        s = summarize(load(rd / fname), c)
-        print(f"  K={k:<3} n={s['n']:3d}  cost/task ${s['cost']:.6f}  "
-              f"acc {s['acc']:.3f}  inj tokens/task {s['inj_tokens_per_task']:.0f}  "
-              f"fallback events {s['fallbacks']}  "
-              f"retrieval {s['retrieval_ms']:.1f} ms")
 
     if missing:
         print()
