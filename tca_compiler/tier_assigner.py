@@ -61,6 +61,11 @@ class TierAssigner:
     estimator:     MemoryInjectionEstimator
     accuracy_slo:  float = 0.85    # minimum acceptable accuracy per node
     frontier_fallback: bool = True  # if no candidate meets SLO, use frontier
+    # Tiers the router may assign. Tiers with zero budget are excluded by the
+    # caller (see run_experiments.py), which is how the paper's "frontier tier
+    # disabled by budget configuration" is enforced: opus has zero budget, so
+    # it is absent here and the router never escalates to it.
+    available_tiers: tuple = tuple(TIER_ORDER)
 
     def assign(
         self,
@@ -129,7 +134,9 @@ class TierAssigner:
         """Find the minimum-TCA (strategy, tier) for one node."""
         candidates = []
 
-        for tier in TIER_ORDER:
+        usable_tiers = [t for t in TIER_ORDER if t in self.available_tiers]
+
+        for tier in usable_tiers:
             profile = self.profiler.get(node_class, tier)
 
             # Skip if accuracy SLO not met
@@ -165,9 +172,18 @@ class TierAssigner:
                 })
 
         if not candidates:
-            # No candidate meets accuracy SLO — use frontier as safe fallback
+            # No candidate meets accuracy SLO — escalate to the safest tier
+            # that is actually available. When opus has budget it is the
+            # frontier fallback; when opus is disabled by budget configuration
+            # (as in the paper's experiments) we escalate to the highest-
+            # capability available tier instead of forcing an unavailable opus
+            # call that the budget guard would kill.
             if self.frontier_fallback:
-                tier = "opus"
+                if "opus" in self.available_tiers:
+                    tier = "opus"
+                else:
+                    # Highest-capability available tier (last in TIER_ORDER).
+                    tier = usable_tiers[-1] if usable_tiers else "sonnet"
                 strategy = "warm-isolated"
                 profile = self.profiler.get(node_class, tier)
                 p_in  = TIER_PRICING[tier]["input"]

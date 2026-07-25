@@ -29,7 +29,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
 
-from .pricing import Tier
+from .pricing import Tier, TIER_ORDER
 from .budget import BudgetGuard
 from .cost_profiler import CostProfiler
 from .estimator import MemoryInjectionEstimator
@@ -122,6 +122,7 @@ class TCACompiler:
         apply_t1:       bool = True,
         apply_t2:       bool = True,
         apply_t3:       bool = True,
+        available_tiers: Optional[tuple] = None,
     ) -> None:
         self.accuracy_slo  = accuracy_slo
         self.apply_t1      = apply_t1
@@ -136,6 +137,10 @@ class TCACompiler:
             profiler=self.profiler,
             estimator=self.estimator,
             accuracy_slo=accuracy_slo,
+            available_tiers=(
+                available_tiers if available_tiers is not None
+                else tuple(TIER_ORDER)
+            ),
         )
         self.budget = BudgetGuard(
             ceiling_usd=budget_ceiling,

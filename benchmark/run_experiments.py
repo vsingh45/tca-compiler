@@ -413,9 +413,16 @@ def main() -> None:
     )
     guard.reset()  # reset for each new experiment run
 
+    # Only tiers with a positive budget are available to the router. Opus has
+    # a zero budget by default, so this enforces the paper's "frontier tier
+    # disabled by budget configuration" without a hard kill-switch: the router
+    # never escalates condition H to opus, matching the banked mid-tier runs.
+    available_tiers = tuple(t for t in TIER_ORDER if TIER_BUDGETS.get(t, 0) > 0)
+
     compiler = TCACompiler(
         accuracy_slo=0.40,
         budget_ceiling=sum(TIER_BUDGETS.values()),
+        available_tiers=available_tiers,
     )
 
     # Output file

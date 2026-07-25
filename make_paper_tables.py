@@ -29,7 +29,7 @@ RUNS = {
     # Mid-tier (sonnet) baseline, condition A, one file per seed
     "A_mid": {
         42: "tca_results_real_20260613_014418.csv",
-        7:  None,  # TODO: fill in after running  --tier sonnet --conditions A --seed 7
+        7:  "tca_results_real_20260723_085114.csv",
         99: None,  # TODO: fill in after running  --tier sonnet --conditions A --seed 99
     },
     # Mid-tier full system, condition H, one file per seed
@@ -47,13 +47,13 @@ RUNS = {
         "D": ("tca_results_real_20260612_200554.csv", "D"),
         "E": ("tca_results_real_20260612_200554.csv", "E"),
         "F": ("tca_results_real_20260612_200554.csv", "F"),
-        "G": (None, "G"),  # TODO: fresh run --tier haiku --conditions G
-        "H": (None, "H"),  # TODO: fresh run --tier haiku --conditions H
+        "G": ("tca_results_real_20260723_111909.csv", "G"),  # fresh full 200-task run
+        "H": ("tca_results_real_20260723_163118.csv", "H"),  # fresh, opus-disabled fix
     },
     # Capacity sensitivity (miss-path / eviction experiment)
     "capacity": {
         32: ("tca_results_real_20260612_200554.csv", "B"),
-        2:  (None, "B"),   # TODO: fresh run --tier haiku --conditions B --warm-capacity 2
+        2:  ("tca_results_real_20260723_172014.csv", "B"),  # warm-capacity 2
     },
 }
 

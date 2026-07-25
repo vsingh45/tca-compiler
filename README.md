@@ -282,7 +282,7 @@ for r in rows:
     tasks[r['task_id']] += float(r.get('cost_total', 0))
 costs = list(tasks.values())
 print(f'H seed 42: {len(costs)} tasks, avg cost \${statistics.mean(costs):.6f}')
-print(f'Expected from paper: ~\$0.009985/task')
+print(f'Expected from paper: ~\$0.009985/task (H, seed 42)')
 "
 ```
 
@@ -329,16 +329,22 @@ extraction script above.
 
 ## Paper results summary
 
-Computed from three random seeds (42, 7, 99) using the extraction scripts above:
+Computed from three random seeds (42, 7, 99) for BOTH conditions using
+`make_paper_tables.py` (single command reproduces every table in the paper):
 
 | Metric | Condition A (baseline) | Condition H (TCA-Compiler) |
 |---|---|---|
-| Avg cost/task | $0.033317 (seed 42) | $0.009989 (3-seed mean) |
-| 95% CI on cost | — (single seed) | $0.009981–$0.009997 |
-| End-to-end accuracy | 0.590 (seed 42) | 0.627 (3-seed mean) |
-| 95% CI on accuracy | — (single seed) | 0.607–0.647 |
-| **Cost reduction** | | **70.0%** |
-| **Accuracy delta** | | **+3.7 pp** |
+| Avg cost/task | $0.023605 (3-seed mean) | $0.009989 (3-seed mean) |
+| 95% CI on cost | $0.023555-$0.023656 | $0.009971-$0.010007 |
+| End-to-end accuracy | 0.582 (3-seed mean) | 0.627 (3-seed mean) |
+| 95% CI on accuracy | 0.535-0.629 | 0.583-0.670 |
+| **Cost reduction (mid tier)** | | **57.7%** |
+| **Accuracy delta** | | **+4.5 pp** |
+
+At the small tier the optimizations are cost-neutral (conditions A-G within
+1%; H slightly higher because it escalates accuracy-sensitive nodes to
+sonnet) - there is no cheaper tier than the price floor. See
+PAPER_RESULTS.md for the full corrected tables and per-CSV provenance.
 
 Memory injection as fraction of total cost (Condition A, sonnet tier):
 
@@ -350,8 +356,6 @@ Memory injection as fraction of total cost (Condition A, sonnet tier):
 | 4 | 19.1% |
 | 5 | 22.7% |
 | 6 | 27.6% |
-
----
 
 ## Budget guard
 
