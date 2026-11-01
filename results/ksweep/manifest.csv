@@ -1,0 +1,3 @@
+K,seed,file,elapsed_s,cost,tasks,inj_tokens_per_task,accuracy
+2,42,K2_seed42.csv,2544.5,1.3879,200,766.0,0.570
+32,42,K32_seed42.csv,,1.4871,200,1074.4,0.600
